@@ -6,7 +6,7 @@ const router = express.Router();
 // Route for save a new company
 router.post('/', async (req,res)=>{
     try{
-        if(!req.body.id || !req.body.name || !req.body.type || !req.body.description || !req.body.addres || !req.body.status){
+        if(!req.body.id || !req.body.name || !req.body.type || !req.body.description || !req.body.addres){
             return res.status(400).send({message: 'send all required fields',});
         }
         const newCompany = {

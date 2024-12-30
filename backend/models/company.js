@@ -23,7 +23,7 @@ import {mongoose} from "mongoose";
                 required : true,
             },
             status:{
-                type : String,
+                type : Boolean,
                 required : true,
             }
         }
