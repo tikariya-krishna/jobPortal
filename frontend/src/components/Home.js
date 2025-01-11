@@ -42,22 +42,33 @@ export default Home = () =>{
           </div>
         </div>
 
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 gap-4 py-6">
         {list2.map((ele) => (
           <>
-          <div className="grid">
-            <div className="grid-cols-2"></div>
-            <div className="grid-cols-8">
+            <div className="border-2 mx-5 py-2 rounded-md shadow-md hover:shadow-lg">
               <ul>
                 <li key={ele.id}>
-                <span>{ele.compnayName}</span>
-                <img src={ele.compnayLogo} style={{ width: '100px', height: '100px' }} />
-                <span>{ele.address}</span>
+                  <div className="ps-3 mb-7 mt-2"> 
+
+                    
+                    <span className="border-2 bg-green-100 text-green-800 border-green-600 font-semibold py-1 px-3 text-xs rounded-md">{ele.workStatus}</span>
+                  </div>
+
+                  <div className="flex items-center justify-center">
+                    <img src={ele.compnayLogo} style={{ width: '100px', height: '100px' }}/>
+                  </div>
+                  
+                  <div className="text-center my-4">
+                    <p className="text-xl font-semibold text-zinc-700">{ele.compnayName}</p>
+                    <p className="text-sm text-zinc-500">{ele.address}</p>
+                  </div>
+
+                  <div className="flex items-center justify-center  my-4">
+                    <button className="border-2 border-green-800 px-4 py-2 rounded-lg text-green-800 hover:text-white hover:bg-green-800 hover:delay-150 hover:duration-500">APPLY NOW</button>
+                  </div>
                 </li>
               </ul>
             </div>
-            <div className="grid-cols-2"></div>
-          </div>
           </>
       ))}
         </div>
