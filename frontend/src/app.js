@@ -5,6 +5,7 @@ import Registration from "./components/Registration.js";
 import Footer from "./components/Footer.js";
 import { BrowserRouter , Routes , Route } from 'react-router';
 import Menu from './components/Menu.js'
+import Login from "./components/Login.js";
 
 
  // react component
@@ -17,8 +18,8 @@ import Menu from './components/Menu.js'
                                 <Route path='/' element={<Home/>}/>
                                 {/* <Route path='/tour_packeg' element={<Tour_packeg/>}/>
                                 <Route path='/contect' element={<Contact/>}/>
-                                <Route path='/about' element={<About/>}/>
-                                <Route path='/login' element={<Login/>}/> */}
+                                <Route path='/about' element={<About/>}/> */}
+                                <Route path='/login' element={<Login/>}/> 
                                 <Route path='/registration' element={<Registration/>}/>
                               </Routes>
                             <Footer/>

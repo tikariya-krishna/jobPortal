@@ -23,7 +23,7 @@ export default Menu = () => {
       <div className="authorize-btn">
       <ul className='flex'>
           <li className='p-1'><a href="/registration"  className='rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Register</a></li>
-          <li className='p-1'><a href="/" className='rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Login</a></li>
+          <li className='p-1'><a href="/login" className='rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Login</a></li>
       </ul>
       </div>
     </nav>

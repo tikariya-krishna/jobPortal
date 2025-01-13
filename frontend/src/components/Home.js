@@ -74,6 +74,23 @@ export default Home = () =>{
         </div>
 
       </div>
+
+
+
+
+      
+      <div className="bg-green-700 bg-newsLetter bg-cover mb-20">
+        <div className="py-32 text-center w-1/2 m-auto">
+          <h1>Subscribe Our Newsletter!</h1>
+          <p>This is Our Newsletter.This is Our Newsletter.This is Our Newsletter.This is Our Newsletter.This is Our Newsletter.</p>
+
+          <div className="flex justify-around">
+            <div className="">icon</div>
+            <div><input type="email" placeholder="Enter your Email..."/></div>
+            <div><button>Subscribe</button></div>
+          </div>
+        </div>
+      </div>
       </>
     );
 };

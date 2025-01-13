@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         'background-image': "url('./components/images/background.jpg')",
+        'newsLetter': "url('./components/images/newsLetImg.png')"
       },
     },
   },
