@@ -1,15 +1,16 @@
 import React from "react";
 import React, { useState } from "react";
-import list2  from "../lists/jobPost.js";
+import list from "../lists/jobPost.js";
 
 
 export default Home = () =>{
-    
+    const [job , setjobs ] = useState("first");
+    const jobToDisplay = list[job]; 
     return(
         <>
         <div className="">
-          <header className="h-screen bg-background-image bg-cover" id="home">
-            <div className="container mx-auto px-64 py-64">
+          <header className="h-screen bg-background-image bg-cover flex" id="home">
+            <div className="container m-auto w-1/2">
               <h1 className="text-6xl font-semibold text-white pb-4">Search Between More <br/> Then <span className="text-green-600">50,000</span> Open Jobs.</h1>
 
               <div className="pb-4">
@@ -19,7 +20,7 @@ export default Home = () =>{
               <div className="search-bar pb-5">
                 <input type="text" placeholder="Search Keywords..."  className="p-3 rounded-l-lg"/>
                 <input type="text" placeholder="Location" className="p-3"/>
-                <select className="p-3">
+                <select className="p-3 border-b border-inherit">
                   <option value="">Category</option>
                   <option value="software">Software</option>
                   <option value="finance">Finance</option>
@@ -37,13 +38,13 @@ export default Home = () =>{
         {/* job Post btn */}
         <div className="">
           <div className="bg-green-800 w-80 p-2 flex justify-around m-auto rounded-md">
-            <button className="text-white font-semibold px-8 py-2 rounded-md hover:bg-white hover:text-green-800 hover:delay-150 hover:duration-700">Latest Jobs</button>
-            <button  className="text-white font-semibold px-8 py-2 rounded-md hover:bg-white hover:text-green-800 hover:delay-150 hover:duration-700">Recent Jobs</button>
+            <button autoFocus className="text-white font-semibold px-8 py-2 rounded-md hover:bg-white focus:bg-white hover:text-green-800 focus:text-green-800 hover:delay-150 hover:duration-700" onClick={() => setjobs("first")}>Latest Jobs</button>
+            <button  className="text-white font-semibold px-8 py-2 rounded-md hover:bg-white focus:bg-white hover:text-green-800 focus:text-green-800 hover:delay-150 hover:duration-700" onClick={() => setjobs("second")}>Recent Jobs</button>
           </div>
         </div>
 
         <div className="grid grid-cols-4 gap-4 py-6">
-        {list2.map((ele) => (
+        {jobToDisplay.map((ele) => (
           <>
             <div className="border-2 mx-5 py-2 rounded-md shadow-md hover:shadow-lg">
               <ul>
@@ -79,15 +80,17 @@ export default Home = () =>{
 
 
       
-      <div className="bg-green-700 bg-newsLetter bg-cover mb-20">
-        <div className="py-32 text-center w-1/2 m-auto">
-          <h1>Subscribe Our Newsletter!</h1>
-          <p>This is Our Newsletter.This is Our Newsletter.This is Our Newsletter.This is Our Newsletter.This is Our Newsletter.</p>
+      <div className="bg-green-700 bg-newsLetter bg-cover bg-center mb-20">
+        <div className="py-16 text-center w-1/2 m-auto">
+          <h1 className="text-white font-bold text-3xl mb-3">Subscribe Our Newsletter!</h1>
+          <p className="text-white">This is Our Newsletter.This is Our Newsletter.This is Our Newsletter.This is Our Newsletter.This is Our Newsletter.</p>
 
-          <div className="flex justify-around">
-            <div className="">icon</div>
-            <div><input type="email" placeholder="Enter your Email..."/></div>
-            <div><button>Subscribe</button></div>
+          <div className="flex justify-between mx-32 m-auto bg-white mt-7 rounded-md ring-offset-1 ring-4 ring-slate-50">
+            <p><svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 7.00012V12.0001M12 12.0001L14 10.0001M12 12.0001L10 10.0001M3.02832 10.0001L10.2246 14.8167C10.8661 15.2444 11.1869 15.4582 11.5336 15.5413C11.8399 15.6147 12.1593 15.6147 12.4657 15.5413C12.8124 15.4582 13.1332 15.2444 13.7747 14.8167L20.971 10.0001M10.2981 4.06892L4.49814 7.71139C3.95121 8.05487 3.67775 8.2266 3.4794 8.45876C3.30385 8.66424 3.17176 8.90317 3.09111 9.16112C3 9.45256 3 9.77548 3 10.4213V16.8001C3 17.9202 3 18.4803 3.21799 18.9081C3.40973 19.2844 3.71569 19.5904 4.09202 19.7821C4.51984 20.0001 5.0799 20.0001 6.2 20.0001H17.8C18.9201 20.0001 19.4802 20.0001 19.908 19.7821C20.2843 19.5904 20.5903 19.2844 20.782 18.9081C21 18.4803 21 17.9202 21 16.8001V10.4213C21 9.77548 21 9.45256 20.9089 9.16112C20.8282 8.90317 20.6962 8.66424 20.5206 8.45876C20.3223 8.2266 20.0488 8.05487 19.5019 7.71139L13.7019 4.06891C13.0846 3.68129 12.776 3.48747 12.4449 3.41192C12.152 3.34512 11.848 3.34512 11.5551 3.41192C11.224 3.48747 10.9154 3.68129 10.2981 4.06892Z" stroke="#15803d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></p>
+            <input type="email" placeholder="Enter your Email..." className="outline-none text-zinc-500 w-full mx-3"/>
+            <div><button className="border-2 border-green-800 font-semibold bg-green-800 px-6 py-2 rounded-lg text-white hover:text-green-800 hover:bg-white hover:delay-150 hover:duration-500">Subscribe</button></div>
           </div>
         </div>
       </div>

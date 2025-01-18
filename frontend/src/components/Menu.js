@@ -18,6 +18,7 @@ export default Menu = () => {
           <li className='p-1'><a href="/employers" className='rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Employers</a></li>
           <li className='p-1'><a href="/candidates"  className='rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Candidates</a></li>
           <li className='p-1'><a href="/contact" className='rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Contact Us</a></li>
+          <li className='p-1'><a href="/userprofile" className='rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>UserProfile</a></li>
         </ul>
       </div>
       <div className="authorize-btn">

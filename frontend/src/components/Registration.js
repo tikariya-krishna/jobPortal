@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM, { createRoot } from 'react-dom/client';
+import TitleContaint from "./innerCom/TitleContaint";
 
 function handleButtonClick() {
     const result = confirm("Are you sure you want to proceed?");
@@ -9,7 +10,8 @@ export default Registration = () =>{
 
     return(
         <>
-        <div className="mt-20 mb-5 py-8">
+        <TitleContaint/>
+        <div className="mt-15 mb-5 py-8">
             <form method="post" className="m-auto w-1/2 px-6 py-8 border-2 rounded-md shadow-md">
 
                 <div className="grid grid-cols-2">

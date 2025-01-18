@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM, { createRoot } from 'react-dom';
+import TitleContaint from "./innerCom/TitleContaint";
 
 
 function handleButtonClick() {
@@ -8,7 +9,8 @@ function handleButtonClick() {
 export default Login = () => {
     return(
         <>
-        <div className="mt-20 mb-5 py-8">
+        <TitleContaint/>
+        <div className="mt-15 mb-5 py-8">
             <form method="post" className="m-auto w-1/2 px-6 py-8 border-2 rounded-md shadow-md">
             <input type="Email" name="uname" placeholder="Email Address" id="name" className="border-2 p-3 w-full rounded-md mt-2 hover:border-green-800"/>
             <input type="password" name="uname" placeholder="Password" id="name" className="border-2 p-3 w-full rounded-md mt-5 hover:border-green-800"/>

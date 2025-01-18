@@ -6,6 +6,7 @@ import Footer from "./components/Footer.js";
 import { BrowserRouter , Routes , Route } from 'react-router';
 import Menu from './components/Menu.js'
 import Login from "./components/Login.js";
+import UserProfile from "./components/UserProfile.js";
 
 
  // react component
@@ -20,6 +21,7 @@ import Login from "./components/Login.js";
                                 <Route path='/contect' element={<Contact/>}/>
                                 <Route path='/about' element={<About/>}/> */}
                                 <Route path='/login' element={<Login/>}/> 
+                                <Route path='/userprofile' element={<UserProfile/>}/> 
                                 <Route path='/registration' element={<Registration/>}/>
                               </Routes>
                             <Footer/>
