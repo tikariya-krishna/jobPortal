@@ -7,9 +7,9 @@ const UserProfile = () => {
   return (
     <>
     <TitleContaint/>
-    <div className='py-20 flex justify-around '>
-        <div className='w-full'><ProfileDetails/></div>
-        <div className='border-2 w-full'><EditProfile/></div>
+    <div className='py-20 flex justify-center mx-38'>
+        <div className='me-7'><ProfileDetails/></div>
+        <div className='border-2 rounded-md'><EditProfile/></div>
     </div>
     </>
   )

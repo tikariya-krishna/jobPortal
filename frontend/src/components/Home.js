@@ -76,10 +76,6 @@ export default Home = () =>{
 
       </div>
 
-
-
-
-      
       <div className="bg-green-700 bg-newsLetter bg-cover bg-center mb-20">
         <div className="py-16 text-center w-1/2 m-auto">
           <h1 className="text-white font-bold text-3xl mb-3">Subscribe Our Newsletter!</h1>

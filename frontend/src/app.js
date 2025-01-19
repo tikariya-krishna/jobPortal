@@ -7,7 +7,7 @@ import { BrowserRouter , Routes , Route } from 'react-router';
 import Menu from './components/Menu.js'
 import Login from "./components/Login.js";
 import UserProfile from "./components/UserProfile.js";
-
+import Jobs from "./components/Jobs.js";
 
  // react component
  const AppLayout = () =>{
@@ -18,8 +18,8 @@ import UserProfile from "./components/UserProfile.js";
                               <Routes>
                                 <Route path='/' element={<Home/>}/>
                                 {/* <Route path='/tour_packeg' element={<Tour_packeg/>}/>
-                                <Route path='/contect' element={<Contact/>}/>
-                                <Route path='/about' element={<About/>}/> */}
+                                <Route path='/contect' element={<Contact/>}/> */}
+                                <Route path='/jobs' element={<Jobs/>}/>
                                 <Route path='/login' element={<Login/>}/> 
                                 <Route path='/userprofile' element={<UserProfile/>}/> 
                                 <Route path='/registration' element={<Registration/>}/>

@@ -18,9 +18,9 @@ const ProfileDetails = () =>{
             
             <div className="pt-10">
                 <ul>
-                    <li className="mb-3 border-2 rounded-md hover:shadow-md"><button className="w-full p-3"><span>icon</span> <span>Dashboard</span></button></li>
-                    <li className="mb-3 border-2 rounded-md hover:shadow-md"><button className="w-full p-3"><span>icon</span> <span>Edit Profile</span></button></li>
-                    <li className="border-2 rounded-md hover:shadow-md"><button className="w-full p-3"><span>icon</span> <span>Logout</span></button></li>
+                    <li className="mb-3 border-2 rounded-md hover:shadow-md"><a href="/userprofile" className="w-full p-3"><span>icon</span> <span>Dashboard</span></a></li>
+                    <li className="mb-3 border-2 rounded-md hover:shadow-md"><a href="/userprofile" className="w-full p-3"><span>icon</span> <span>Edit Profile</span></a></li>
+                    <li className="border-2 rounded-md hover:shadow-md"><a href="/userprofile" className="w-full p-3"><span>icon</span> <span>Log out</span></a></li>
                 </ul>
             </div>
         </>
