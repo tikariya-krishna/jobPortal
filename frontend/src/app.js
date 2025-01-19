@@ -8,6 +8,8 @@ import Menu from './components/Menu.js'
 import Login from "./components/Login.js";
 import UserProfile from "./components/UserProfile.js";
 import Jobs from "./components/Jobs.js";
+import DashBoard from "./components/innerCom/DashBoard.js";
+import LogOut from "./components/innerCom/LogOut.js";
 
  // react component
  const AppLayout = () =>{
@@ -22,6 +24,8 @@ import Jobs from "./components/Jobs.js";
                                 <Route path='/jobs' element={<Jobs/>}/>
                                 <Route path='/login' element={<Login/>}/> 
                                 <Route path='/userprofile' element={<UserProfile/>}/> 
+                                <Route path='/dashboard' element={<DashBoard/>}/> 
+                                <Route path='/logout' element={<LogOut/>}/> 
                                 <Route path='/registration' element={<Registration/>}/>
                               </Routes>
                             <Footer/>

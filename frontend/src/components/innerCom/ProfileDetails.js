@@ -18,9 +18,9 @@ const ProfileDetails = () =>{
             
             <div className="pt-10">
                 <ul>
-                    <li className="mb-3 border-2 rounded-md hover:shadow-md"><a href="/userprofile" className="w-full p-3"><span>icon</span> <span>Dashboard</span></a></li>
-                    <li className="mb-3 border-2 rounded-md hover:shadow-md"><a href="/userprofile" className="w-full p-3"><span>icon</span> <span>Edit Profile</span></a></li>
-                    <li className="border-2 rounded-md hover:shadow-md"><a href="/userprofile" className="w-full p-3"><span>icon</span> <span>Log out</span></a></li>
+                    <li><a href="/dashboard" className="w-full mb-3 border-2 block p-3 rounded-md hover:shadow-md"><span>icon</span> <span>Dashboard</span></a></li>
+                    <li><a href="/userprofile" className="w-full mb-3 border-2 block p-3 rounded-md hover:shadow-md"><span>icon</span> <span>Edit Profile</span></a></li>
+                    <li><a href="/logout" className="w-full mb-3 border-2 block p-3 rounded-md hover:shadow-md"><span>icon</span> <span>Log out</span></a></li>
                 </ul>
             </div>
         </>
