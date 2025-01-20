@@ -5,8 +5,8 @@ const Jobs = () =>{
     return(
         <>
             <TitleContaint/>
-            <div className="flex justify-center">
-                <div className="p-10">
+            <div className="xl:flex justify-center md:block lg:flex">
+                <div className="p-10 md:grid md:grid-cols-2 xl:grid-cols-none lg:grid-cols-none">
                     <div className="border-2 w-64 p-3 rounded-md shadow-md">
                         <input type="text" name="search" placeholder="Search Keywords" className="w-full border-2 p-2 mb-4 rounded-md"/>
                         <input type="text" name="location" placeholder="All Location"  className="w-full border-2 p-2 rounded-md"/>
@@ -74,7 +74,7 @@ const Jobs = () =>{
                     </div>
                 </div>
 
-                <div className="w-7/12 pt-10"><JobPost/></div>
+                <div className="xl:w-7/12 lg:w-full lg:me-5 pt-10"><JobPost/></div>
 
             </div>
         </>

@@ -10,6 +10,9 @@ module.exports = {
         'newsLetter': "url('./components/images/newsLetImg.png')",
         'titleBgImg' : "url('./components/images/titleBgImg.png')"
       },
+      screens: {
+        'max-mobile': '375px',
+      },
     },
   },
   plugins: [],

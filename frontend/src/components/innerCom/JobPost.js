@@ -2,7 +2,7 @@ import React from 'react'
 import list from '../../lists/JobPostList';
 const JobPost = () => {
   return (
-    <div className='text-slate-700'>
+    <div className='text-slate-700 md:mx-5 lg:mx-0 mobile:mx-3'>
       <div className='flex mb-7 justify-between'>
         <p className='pt-2 text-xl font-bold'>Jobs & Vacancies</p>
         <div>
@@ -32,7 +32,8 @@ const JobPost = () => {
 
                     <hr/>
 
-                    <div className='flex justify-between w-full mt-3'>
+                    <div className='mobile:block md:flex justify-between w-full mt-3'>
+                      <div className='flex'>
                         <div className='me-10'>
                           <ul>
                             <li>Job Id</li>
@@ -52,10 +53,11 @@ const JobPost = () => {
                             <li className='pt-2'>{ele.location}</li>
                           </ul>
                         </div>
+                      </div>
 
-                        <div className=''>
-                          <div className='mt-5'>
-                            <button className='border-2 border-green-800 font-semibold bg-green-800 w-40 py-2 mb-4 shadow-md rounded-lg text-white hover:text-green-800 hover:bg-white hover:delay-150 hover:duration-500'>APPLY NOW</button><br/>
+                        <div className='mobile:text-center'>
+                          <div className='mt-5 mobile:flex mobile:justify-around md:block'>
+                            <button className='border-2 mobile:mb-0 border-green-800 font-semibold bg-green-800 w-40 py-2 md:mb-4 shadow-md rounded-lg text-white hover:text-green-800 hover:bg-white hover:delay-150 hover:duration-500'>APPLY NOW</button><br/>
                             <button className='bg-slate-300 font-semibold px-6 py-2 rounded-lg text-black w-40 shadow-md'>VIEW JOBS</button>
                           </div>
                         </div>

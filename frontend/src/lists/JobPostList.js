@@ -1,7 +1,7 @@
 import img1 from './jobImg/company_logo_1.png';
 const list = [
     {
-        "id" : 123,
+        "id" : 1,
         "logo" : img1,
         "jobTitle" : "AppleLtd",
         "jobField" : "Sofware Development",
@@ -12,7 +12,7 @@ const list = [
         "location" : "215,LEA 54+,UAE"
     },
     {
-        "id" : 123,
+        "id" : 2,
         "logo" : img1,
         "jobTitle" : "AppleLtd",
         "jobField" : "Sofware Development",
@@ -22,7 +22,7 @@ const list = [
         "experiance" : "3 Year",
         "location" : "215,LEA 54+,UAE"
     },{
-        "id" : 123,
+        "id" : 3,
         "logo" : img1,
         "jobTitle" : "AppleLtd",
         "jobField" : "Sofware Development",
@@ -32,7 +32,7 @@ const list = [
         "experiance" : "3 Year",
         "location" : "215,LEA 54+,UAE"
     },{
-        "id" : 123,
+        "id" : 4,
         "logo" : img1,
         "jobTitle" : "AppleLtd",
         "jobField" : "Sofware Development",
@@ -42,7 +42,7 @@ const list = [
         "experiance" : "3 Year",
         "location" : "215,LEA 54+,UAE"
     },{
-        "id" : 123,
+        "id" : 5,
         "logo" : img1,
         "jobTitle" : "AppleLtd",
         "jobField" : "Sofware Development",
@@ -52,7 +52,7 @@ const list = [
         "experiance" : "3 Year",
         "location" : "215,LEA 54+,UAE"
     },{
-        "id" : 123,
+        "id" : 6,
         "logo" : img1,
         "jobTitle" : "AppleLtd",
         "jobField" : "Sofware Development",
@@ -62,7 +62,7 @@ const list = [
         "experiance" : "3 Year",
         "location" : "215,LEA 54+,UAE"
     },{
-        "id" : 123,
+        "id" : 7,
         "logo" : img1,
         "jobTitle" : "AppleLtd",
         "jobField" : "Sofware Development",
