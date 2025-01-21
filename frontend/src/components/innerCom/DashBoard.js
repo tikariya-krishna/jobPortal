@@ -6,7 +6,7 @@ import logo from '../../lists/jobImg/company_logo_1.png';
 const DashBoard = () => {
   return (
     <>
-    <TitleContaint/>
+    <TitleContaint  name={"Profile Settings"} path={"Profile Settings"}/>
     <div className='py-20 flex justify-center mx-38'>
         <div className='me-7'><ProfileDetails/></div>
         <div>

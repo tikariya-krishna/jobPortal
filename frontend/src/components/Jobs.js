@@ -4,7 +4,7 @@ import JobPost from "./innerCom/JobPost.js";
 const Jobs = () =>{
     return(
         <>
-            <TitleContaint/>
+            <TitleContaint  name={"Browse Job"} path={"Browse Job"}/>
             <div className="xl:flex justify-center md:block lg:flex">
                 <div className="p-10 md:grid md:grid-cols-2 xl:grid-cols-none lg:grid-cols-none">
                     <div className="border-2 w-64 p-3 rounded-md shadow-md">

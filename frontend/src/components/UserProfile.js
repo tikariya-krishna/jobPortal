@@ -6,7 +6,7 @@ import EditProfile from './innerCom/EditProfile';
 const UserProfile = () => {
   return (
     <>
-    <TitleContaint/>
+    <TitleContaint name={"Profile Settings"} path={"Profile Settings"}/>
     <div className='py-20 flex justify-center mx-38'>
         <div className='me-7'><ProfileDetails/></div>
         <div className='border-2 rounded-md'><EditProfile/></div>

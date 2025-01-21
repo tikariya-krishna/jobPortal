@@ -10,7 +10,7 @@ export default Registration = () =>{
 
     return(
         <>
-        <TitleContaint/>
+        <TitleContaint name={"Create an Account"} path={"Registration"} />
         <div className="mt-15 mb-5 py-8 max-sm:mx-5">
             <form method="post" className="m-auto max-sm:w-full w-1/2 px-6 py-8 border-2 rounded-md shadow-md">
 
