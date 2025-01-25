@@ -10,6 +10,9 @@ import UserProfile from "./components/UserProfile.js";
 import Jobs from "./components/Jobs.js";
 import DashBoard from "./components/innerCom/DashBoard.js";
 import LogOut from "./components/innerCom/LogOut.js";
+import Addjobs from "./components/AddJobs.js";
+import CompnayInfo from "./components/CompnayInfo.js";
+import JobPostDetail from "./components/innerCom/jobPostDetail.js";
 
  // react component
  const AppLayout = () =>{
@@ -19,12 +22,13 @@ import LogOut from "./components/innerCom/LogOut.js";
                             <Menu/>
                               <Routes>
                                 <Route path='/' element={<Home/>}/>
-                                {/* <Route path='/tour_packeg' element={<Tour_packeg/>}/>
-                                <Route path='/contect' element={<Contact/>}/> */}
                                 <Route path='/jobs' element={<Jobs/>}/>
                                 <Route path='/login' element={<Login/>}/> 
                                 <Route path='/userprofile' element={<UserProfile/>}/> 
+                                <Route path='/compannyinfo' element={<CompnayInfo/>}/> 
                                 <Route path='/dashboard' element={<DashBoard/>}/> 
+                                <Route path='/addjobs' element={<Addjobs/>}/>
+                                <Route path='/jobpostdeatil' element={<JobPostDetail/>}/>
                                 <Route path='/logout' element={<LogOut/>}/> 
                                 <Route path='/registration' element={<Registration/>}/>
                               </Routes>
