@@ -12,7 +12,7 @@ import DashBoard from "./components/innerCom/DashBoard.js";
 import LogOut from "./components/innerCom/LogOut.js";
 import Addjobs from "./components/AddJobs.js";
 import CompnayInfo from "./components/CompnayInfo.js";
-import JobPostDetail from "./components/innerCom/jobPostDetail.js";
+import JobPostDetail from "./components/innerCom/JobPostDetail.js";
 
  // react component
  const AppLayout = () =>{
@@ -28,7 +28,7 @@ import JobPostDetail from "./components/innerCom/jobPostDetail.js";
                                 <Route path='/compannyinfo' element={<CompnayInfo/>}/> 
                                 <Route path='/dashboard' element={<DashBoard/>}/> 
                                 <Route path='/addjobs' element={<Addjobs/>}/>
-                                <Route path='/jobpostdeatil' element={<JobPostDetail/>}/>
+                                <Route path="/jobpostdeatil" element={<JobPostDetail/>}/>
                                 <Route path='/logout' element={<LogOut/>}/> 
                                 <Route path='/registration' element={<Registration/>}/>
                               </Routes>

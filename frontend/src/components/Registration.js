@@ -12,8 +12,8 @@ export default Registration = () =>{
         <>
         <TitleContaint name={"Create an Account"} path={"Registration"} />
         <div className="mt-15 mb-5 py-8 max-sm:mx-5">
-            <form method="post" className="m-auto max-sm:w-full w-1/2 px-6 py-8 border-2 rounded-md shadow-md">
-
+            <form method="post" className="m-auto max-sm:w-full w-1/2 px-6 py-6 border-2 rounded-md shadow-md">
+            <p className="font-semibold text-3xl text-center mb-6">Register Yourself</p>
                 <div className="xl:grid xl:grid-cols-2 2xl:grid 2xl:grid-cols-2">
                     <div className="me-4">
                         <label for="name" className="text-zinc-600 font-semibold">Name</label><br/>
@@ -41,7 +41,7 @@ export default Registration = () =>{
                 </div>
 
                 <div className="text-center mt-5">
-                    <button onClick={handleButtonClick} className="w-full p-3 border-2 text-white bg-green-600 rounded-md hover:border-green-800 hover:bg-white hover:text-green-800">SIGN UP</button>
+                    <button onClick={handleButtonClick} className="w-full p-3 border-2 text-white bg-green-600 font-semibold rounded-md hover:border-green-800 hover:bg-white hover:text-green-800">SIGN UP</button>
                 </div>
 
             </form>

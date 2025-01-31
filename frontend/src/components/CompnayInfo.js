@@ -6,7 +6,7 @@ const CompnayInfo = () => {
   return (
     <>
       <TitleContaint name={"Company Profile"} path="companyProfile" />
-      <div className="py-20 flex justify-center mx-38">
+      <div className="py-20 md:flex justify-center mx-38">
         <div className="me-7">
           <ProfileDetails />
         </div>
