@@ -3,7 +3,7 @@ const Sidebar = () => {
     return(
         <>
             <div>
-                    <div className="border-2 w-64 p-3 rounded-md shadow-md mt-5">
+                    <div className="border-2 w-64 p-3 rounded-md shadow-md">
                         <p className="font-xl font-semibold text-slate-700 mb-2">Location</p><hr/>
 
                         <div className="text-slate-600 pt-2">

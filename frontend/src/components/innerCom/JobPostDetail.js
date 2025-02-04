@@ -2,12 +2,13 @@ import React from 'react';
 import logo from '../../lists/jobImg/company_logo_1.png';
 import TitleContaint from './TitleContaint';
 import Sidebar from './SideBar';
+import list from '../../lists/JobPostList';
 
 const JobPostDetail = () => {
   return (
     <>
-      <TitleContaint name={"Job Detail"} path={"Job Detail"}/>
-      <div className='mx-60 m-auto mt-10 flex'>
+      <TitleContaint name={"Job Detail"} path={"Job Detail"}  />
+      <div className='mx-60 lg:mx-32 md:mx-10 max-mobile:mx-0 m-auto mt-10 sm:flex max-mobile:block'>
           <div className='left-content'>
               <div className='grid grid-cols-2 justify-left border-2 py-5 rounded-md'>
                 <div className='text-center'>
