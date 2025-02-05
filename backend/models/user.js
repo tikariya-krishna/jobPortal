@@ -2,11 +2,7 @@ import {mongoose} from "mongoose";
 
     const userSchema = mongoose.Schema(
         {
-            userId:{
-                type : Number,
-                required : true,
-            },
-            userName:{
+            name:{
                 type : String,
                 required : true,
             },
@@ -18,13 +14,17 @@ import {mongoose} from "mongoose";
                 type : String,
                 required : true,
             },
+            phone:{
+                type : String,
+                required : false,
+            },
             role:{
                 type : String,
                 required : true,
             },
             created:{
                 type : String,
-                required : true,
+                required : false,
             }
         }
     )

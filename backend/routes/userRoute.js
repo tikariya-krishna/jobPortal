@@ -5,13 +5,13 @@ const router = express.Router();
 
 // Route for save a new user
 router.post('/', async (req,res)=>{
+    console.log("helllo..");
     try{
-        if(!req.body.userId || !req.body.userName || !req.body.password || !req.body.email || !req.body.role || !req.body.created){
+        if(!req.body.name || !req.body.password || !req.body.email || !req.body.role || !req.body.created){
             return res.status(400).send({message: 'send all required fields',});
         }
         const newUser = {
-            userId: req.body.userId ,
-            userName: req.body.userName,
+            name: req.body.name,
             password: req.body.password,
             email : req.body.email,
             role: req.body.role,
@@ -19,6 +19,30 @@ router.post('/', async (req,res)=>{
         };
         const user = await User.create(newUser);
         return res.status(201).send(user);
+    }catch(error){
+        console.log(error);
+        res.status(500).send({message: error.message});  
+    }
+});
+
+
+router.post('/login', async (req,res)=>{
+    try{
+        if(!req.body.password || !req.body.email || !req.body.role){
+            return res.status(400).send({message: 'send all required fields',});
+        }
+        const newUser = {
+            password: req.body.password,
+            email : req.body.email,
+            role: req.body.role,
+        };
+        const user = await User.findOne(newUser);
+
+        if (!user) {
+            return res.status(401).send({ message: "Invalid credentials" });
+        }
+
+        return res.status(200).send({ message: "Login successful", user });
     }catch(error){
         console.log(error.message);
         res.status(500).send({message: error.message});  

@@ -5,10 +5,12 @@ import { User } from "./models/user.js";
 import userRoute from './routes/userRoute.js'
 import { Company } from "./models/company.js";
 import companyRoute from './routes/companyRoute.js'
-
+import cors from "cors"
 
 const app = express();
 
+// Use CORS middleware with specified options
+app.use(cors());
 
 //Middleware for parsing request body
 app.use(express.json());
