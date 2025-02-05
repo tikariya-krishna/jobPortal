@@ -77,8 +77,7 @@ const JobPostDetail = () => {
 
               <div className='mt-5 border-2 rounded-md'>
                   <p className='bg-gray-700 text-white font-semibold text-xl py-3 px-4'>Location</p>
-                  <p className='text-gray-600 px-3 py-4'>This is job description. This is job description. This is job description. This is job description. This is job description. This is job description. 
-                  This is job description. This is job description. This is job description. This is job description. This is job description. This is job description. 
+                  <p className='text-gray-600 px-3 py-4'><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15092.204096371997!2d72.8113243017878!3d18.973353865360576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7ce6e893065bd%3A0x9879ebcd3ef31652!2sMumbai%20Central!5e0!3m2!1sen!2sin!4v1738667609575!5m2!1sen!2sin" className='w-full' height="400" allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                   </p>
               </div>
 

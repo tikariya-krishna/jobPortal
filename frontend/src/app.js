@@ -13,6 +13,7 @@ import LogOut from "./components/innerCom/LogOut.js";
 import Addjobs from "./components/AddJobs.js";
 import CompnayInfo from "./components/CompnayInfo.js";
 import JobPostDetail from "./components/innerCom/JobPostDetail.js";
+import Contact from "./components/Contact.js";
 
  // react component
  const AppLayout = () =>{
@@ -31,6 +32,7 @@ import JobPostDetail from "./components/innerCom/JobPostDetail.js";
                                 <Route path="/jobpostdeatil" element={<JobPostDetail/>}/>
                                 <Route path='/logout' element={<LogOut/>}/> 
                                 <Route path='/registration' element={<Registration/>}/>
+                                <Route path='/contact' element={<Contact/>}/>
                               </Routes>
                             <Footer/>
                         </BrowserRouter>

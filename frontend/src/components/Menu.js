@@ -1,4 +1,5 @@
 import ReactDOM, { createRoot } from 'react-dom/client';
+import { Outlet, Link } from "react-router";
 import React, { useState } from "react";
 import logo from "./images/logo.png";
 import Registration from './Registration';
@@ -13,18 +14,18 @@ export default Menu = () => {
       </div>
       <div className="">
         <ul className='md:flex'>
-          <li className='p-1'><a href="/" className='max-mobile:block max-mobile:text-center max-mobile:mx-5 md:mx-0 md:inline rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Home</a></li>
-          <li className='p-1'><a href="/jobs" className='max-mobile:block max-mobile:text-center max-mobile:mx-5 md:mx-0 md:inline rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Jobs</a></li>
-          <li className='p-1'><a href="/employers" className='max-mobile:block max-mobile:text-center max-mobile:mx-5 md:mx-0 md:inline rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Employers</a></li>
-          <li className='p-1'><a href="/addjobs"  className='max-mobile:block max-mobile:text-center max-mobile:mx-5 md:mx-0 md:inline rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Add Jobs</a></li>
-          <li className='p-1'><a href="/compannyinfo"  className='max-mobile:block max-mobile:text-center max-mobile:mx-5 md:mx-0 md:inline rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Company Profile</a></li>
-          <li className='p-1'><a href="/userprofile" className='max-mobile:block max-mobile:text-center max-mobile:mx-5 md:mx-0 md:inline rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>UserProfile</a></li>
+          <li className='p-1'><Link to="/" className='max-mobile:block max-mobile:text-center max-mobile:mx-5 md:mx-0 md:inline rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Home</Link></li>
+          <li className='p-1'><Link to="/jobs" className='max-mobile:block max-mobile:text-center max-mobile:mx-5 md:mx-0 md:inline rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Jobs</Link></li>
+          <li className='p-1'><Link to="/addjobs"  className='max-mobile:block max-mobile:text-center max-mobile:mx-5 md:mx-0 md:inline rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Add Jobs</Link></li>
+          <li className='p-1'><Link to="/compannyinfo"  className='max-mobile:block max-mobile:text-center max-mobile:mx-5 md:mx-0 md:inline rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Company Profile</Link></li>
+          <li className='p-1'><Link to="/userprofile" className='max-mobile:block max-mobile:text-center max-mobile:mx-5 md:mx-0 md:inline rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>UserProfile</Link></li>
+          <li className='p-1'><Link to="/contact" className='max-mobile:block max-mobile:text-center max-mobile:mx-5 md:mx-0 md:inline rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Contact</Link></li>
         </ul>
       </div>
       <div className="authorize-btn max-mobile:mt-5 md:mt-0">
       <ul className='flex max-mobile:justify-around'>
-          <li className='p-1'><a href="/registration"  className='rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Register</a></li>
-          <li className='p-1'><a href="/login" className='rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Login</a></li>
+          <li className='p-1'><Link to="/registration"  className='rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Register</Link></li>
+          <li className='p-1'><Link to="/login" className='rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Login</Link></li>
       </ul>
       </div>
     </nav>

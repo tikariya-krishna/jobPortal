@@ -1,5 +1,6 @@
 import React from "react";
 import UserProfile from "../images/user-profile.png";
+import {Outlet,Link} from 'react-router'
 
 const ProfileDetails = () =>{
     return(
@@ -18,9 +19,9 @@ const ProfileDetails = () =>{
             
             <div className="pt-10">
                 <ul>
-                    <li><a href="/dashboard" className="w-full mb-3 border-2 block p-3 rounded-md hover:shadow-md"><span>icon</span> <span>Dashboard</span></a></li>
-                    <li><a href="/companyprofile" className="w-full mb-3 border-2 block p-3 rounded-md hover:shadow-md"><span>icon</span> <span>Edit Profile</span></a></li>
-                    <li><a href="/logout" className="w-full mb-3 border-2 block p-3 rounded-md hover:shadow-md"><span>icon</span> <span>Log out</span></a></li>
+                    <li><Link to="/dashboard" className="w-full mb-3 border-2 block p-3 rounded-md hover:shadow-md"><span>icon</span> <span>Dashboard</span></Link></li>
+                    <li><Link to="/companyprofile" className="w-full mb-3 border-2 block p-3 rounded-md hover:shadow-md"><span>icon</span> <span>Edit Profile</span></Link></li>
+                    <li><Link to="/logout" className="w-full mb-3 border-2 block p-3 rounded-md hover:shadow-md"><span>icon</span> <span>Log out</span></Link></li>
                 </ul>
             </div>
         </>

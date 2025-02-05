@@ -1,5 +1,6 @@
 import React from 'react'
 import list from '../../lists/JobPostList';
+import {Outlet,Link} from 'react-router'
 const JobPost = () => {
   return (
     <div className='text-slate-700 md:mx-5 lg:mx-0 mobile:mx-3'>
@@ -58,7 +59,7 @@ const JobPost = () => {
                         <div className='mobile:text-center'>
                           <div className='mt-5 mobile:flex mobile:justify-around md:block'>
                             <button className='border-2 mobile:mb-0 border-green-800 font-semibold bg-green-800 w-40 py-2 md:mb-4 shadow-md rounded-lg text-white hover:text-green-800 hover:bg-white hover:delay-150 hover:duration-500'>APPLY NOW</button><br/>
-                            <a href='/jobpostdeatil' className=' block text-center px-6 py-2 bg-slate-300 font-semibold rounded-lg text-black shadow-md'>VIEW JOBS</a>
+                            <Link to='/jobpostdeatil' className=' block text-center px-6 py-2 bg-slate-300 font-semibold rounded-lg text-black shadow-md'>VIEW JOBS</Link>
                           </div>
                         </div>
                       </div>
