@@ -1,5 +1,6 @@
 import express from "express"; 
 import {User} from '../models/user.js';
+import { Contact } from "../models/contect.js";
 
 const router = express.Router();
 
@@ -25,7 +26,31 @@ router.post('/', async (req,res)=>{
     }
 });
 
+router.post('/contact', async (req,res)=>{
+    
+    try{
+        if(!req.body.name || !req.body.email || !req.body.subject || !req.body.message){  
+           return res.status(400).send({message: 'Send all required fields',});
+        }
+        
+        const newContactReq = {
+            name: req.body.name,
+            email : req.body.email,
+            subject: req.body.subject,
+            message: req.body.message
+        };
+        const contact = await Contact.create(newContactReq);
+        return res.status(201).send(contact);
+    }catch(error){
+        console.log(error);
+        res.status(500).send({message: error.message});  
+    }
+});
 
+
+
+
+// login route
 router.post('/login', async (req,res)=>{
     try{
         if(!req.body.password || !req.body.email || !req.body.role){
