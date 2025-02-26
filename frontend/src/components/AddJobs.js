@@ -1,53 +1,83 @@
-import React from "react";
+import React, { use } from "react";
 import TitleContaint from "./innerCom/TitleContaint";
-import { useFormik } from "formik";
+import { useFormik, validateYupSchema } from "formik";
+import { useState } from "react";
+import * as yup from 'yup';
+
+
+async function formSubmit(data,setStatus) {
+    try{
+        const res = await fetch("http://localhost:3000/addjobs",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json", // Fix: Specify JSON format
+            },
+            body: data, 
+        });
+
+        if(!res.ok){
+            const result = await res.json();
+            var errMsg = result.message;
+            setStatus({msg: "Error: " + errMsg, sent: false});
+            return false;
+            }
+            const result = await res.json();
+            setStatus({msg: "Registration Successfull",sent: true});
+        }catch(error){
+            setStatus({msg:"Error: " + error.message,sent: false});
+            console.error("Error", error);
+        }
+    }
+
 const Addjobs = () => {
 
+    const [status,setStatus] = useState(null);
     const formik = useFormik({
-            initialValues:{
-                job_title : "",
-                company_name : "",
-                category : "",
-                discription : "",
-                salary_range : "",
-                vacancy : "",
-                experiance : "",
-                logo : "",
-                job_type : "",
-                email : "",
-                phone_number : "",
-                address : "",
-                city : "",
-                state : "",
-                country : "",
-                zip_code : "",
-            }, onSubmit: async (values,{resetForm})=>{
-                try{
-                    const res= await fetch("http://localhost:3000/addjobs",{
-                        method: "POST",
-                        headers:{
-                            "Content-Type":"application/json",
-                        },
-                        body: JSON.stringify(values, null, 2),
-                    });
-                    if(!res.ok){
-                        throw new Error(`HTTP erroe! Status: ${res.status}`);
-                    }
-                    const result = await res.json();
-                    alert("Seccessfully add");
-                    resetForm();
-                }catch(error){
-                    alert("Error: " + error.message);
-                    console.log("Error: ",error);
-                    
-                }
-            }
-        });
+        initialValues:{
+                        job_title : "",
+                        company_name : "",
+                        category : "",
+                        discription : "",
+                        salary_range : "",
+                        vacancy : "",
+                        experiance : "",
+                        logo : "",
+                        job_type : "",
+                        email : "",
+                        phone_number : "",
+                        address : "",
+                        city : "",
+                        state : "",
+                        country : "",
+                        zip_code : "",
+                    },
+                    validationSchema : yup.object({
+                        job_title: yup.string().required('This is a required field'),
+                        company_name: yup.string().required('This is a required field'),
+                        category: yup.string().required('This is a required field'),
+                        discription: yup.string().required('This is a required field'),
+                        salary_range: yup.string().required('This is a required field'),
+                        vacancy: yup.number().required('This is a required field'),
+                        experiance: yup.number().required('This is a required field'),
+                        logo: yup.mixed().required('This is a required field'),
+                        job_type: yup.string().required('This is a required field'),
+                        email: yup.string().required('This is a required field'),
+                        phone_number: yup.string().required('This is a required field'),
+                        address: yup.string().required('This is a required field'),
+                        city: yup.string().required('This is a required field'),
+                        state: yup.string().required('This is a required field'),
+                        country: yup.string().required('This is a required field'),
+                        zip_code: yup.string().required('This is a required field'),
+                    }),onSubmit: (values) => {
+                        formSubmit(values, setStatus);
+                    },
+    });
+
     return (
         <>
             <TitleContaint name={"ADD JOBS"} path={"Add Job"} />
             <div className="mt-5 px-40 py-5">
-            <form method="POST">
+            <form method="POST" onSubmit={formik.handleSubmit}>
                 <div className="mt-5 border-2 rounded-md">
                     
                         <div className="bg-gray-700 px-4 py-3 rounded-sm"><p className="text-lg font-semibold text-white">General Information</p></div>
@@ -55,40 +85,46 @@ const Addjobs = () => {
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                                 <div>
                                     <label htmlFor="title" className="mb-2 block text-sm font-medium text-gray-700">Job Title</label>
-                                    <input type="text" name="job_title" id="title" className="border-2 w-full p-2 rounded-md" placeholder="Job Title" />
+                                    <input type="text" name="job_title" id="title" className="border-2 w-full p-2 rounded-md" placeholder="Job Title" value={formik.values.job_title} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                                    {formik.errors.job_title ? <div className="text-red-700">{formik.errors.job_title}</div> : null}
                                 </div>
                                 <div>
                                     <label htmlFor="cname" className="mb-2 block text-sm font-medium text-gray-700">Company Name</label>
-                                    <input type="text" name="company_name" id="cname" className="border-2 w-full p-2 rounded-md" placeholder="Company Name" />
+                                    <input type="text" name="company_name" id="cname" className="border-2 w-full p-2 rounded-md" placeholder="Company Name" value={formik.values.company_name} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+                                    {formik.errors.company_name ? <div className="text-red-700">{formik.errors.company_name}</div> : null}
                                 </div>
                                 <div>
                                     <label htmlFor="category" className="mb-2 block text-sm font-medium text-gray-700">Category</label>
-                                    <select className="border-2 w-full p-2 rounded-md text-gray-700" id="category" name="category">
+                                    <select className="border-2 w-full p-2 rounded-md text-gray-700" id="category" name="category"  value={formik.values.category} onChange={formik.handleChange} onBlur={formik.handleBlur}>
                                         <option >Category</option>
                                         <option value="IT">Information of Techonology</option>
                                         <option value="Hardware">Hardware</option>
                                         <option value="Machanical">Machanical</option>
                                     </select>
+                                    {formik.errors.category ? <div className="text-red-700">{formik.errors.category}</div> : null}
                                 </div>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                                 <div>
                                     <label htmlFor="discription" className="mb-2 block text-sm font-medium text-gray-700">Discription</label>
-                                    <input type="text" name="discription" id="discription" className="border-2 w-full p-2 rounded-md text-gray-700" placeholder="Discription" />
+                                    <input type="text" name="discription" id="discription" className="border-2 w-full p-2 rounded-md text-gray-700" placeholder="Discription" value={formik.values.discription} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+                                    {formik.errors.discription ? <div className="text-red-700">{formik.errors.discription}</div> : null}
                                 </div>
                                 <div>
                                     <label htmlFor="category" className="mb-2 block text-sm font-medium text-gray-700">Salary Range</label>
-                                    <select className="border-2 w-full p-2 rounded-md text-gray-700" id="category" name="salary_range">
+                                    <select className="border-2 w-full p-2 rounded-md text-gray-700" id="category" name="salary_range" value={formik.values.salary_range} onChange={formik.handleChange} onBlur={formik.handleBlur}>
                                         <option>Salary Range</option>
                                         <option value="1000">$1000</option>
                                         <option value="2000">$2000</option>
                                         <option value="3000">$3000</option>
                                     </select>
+                                    {formik.errors.salary_range ? <div className="text-red-700">{formik.errors.salary_range}</div> : null}
                                 </div>
                                 <div>
                                     <label htmlFor="vacancy" className="mb-2 block text-sm font-medium text-gray-700">No. of Vacancy</label>
-                                    <input type="number" name="vacancy" id="vacancy" className="border-2 w-full p-2 rounded-md text-gray-700" placeholder="No. of Vacancy" />
+                                    <input type="number" name="vacancy" id="vacancy" className="border-2 w-full p-2 rounded-md text-gray-700" placeholder="No. of Vacancy" value={formik.values.vacancy} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+                                    {formik.errors.vacancy ? <div className="text-red-700">{formik.errors.vacancy}</div> : null}
                                 </div>
                             </div>
 
@@ -96,21 +132,24 @@ const Addjobs = () => {
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                                 <div>
                                     <label htmlFor="experience" className="mb-2 block text-sm font-medium text-gray-700">Experience</label>
-                                    <input type="text" name="experiance" id="experience" className="border-2 w-full p-2 rounded-md" placeholder="Experience" />
+                                    <input type="text" name="experiance" id="experience" className="border-2 w-full p-2 rounded-md" placeholder="Experience" value={formik.values.experiance} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+                                    {formik.errors.experiance ? <div className="text-red-700">{formik.errors.experiance}</div> : null}
                                 </div>
                                 <div>
                                     <label htmlFor="logo" className="mb-2 block text-sm font-medium text-gray-700">Company Logo</label>
-                                    <input type="file" name="logo" id="logo" className="border-2 w-full p-2 rounded-md" placeholder="Company Logo" />
+                                    <input type="file" name="logo" id="logo" className="border-2 w-full p-2 rounded-md" placeholder="Company Logo"  value={formik.values.logo} onChange={(event) => formik.setFieldValue("logo", event.currentTarget.files[0])} onBlur={formik.handleBlur}/>
+                                    {formik.errors.logo ? <div className="text-red-700">{formik.errors.logo}</div> : null}
                                 </div>
                                 <div>
                                     <label htmlFor="category" className="mb-2 block text-sm font-medium text-gray-700">Job Type</label>
-                                    <select className="border-2 w-full p-2 rounded-md text-gray-700" id="category" name="job_type">
+                                    <select className="border-2 w-full p-2 rounded-md text-gray-700" id="category" name="job_type" value={formik.values.job_type} onChange={formik.handleChange} onBlur={formik.handleBlur}>
                                         <option >Job Type</option>
                                         <option value="part_time">Part Time</option>
                                         <option value="full_time">Full Time</option>
                                         <option value="internship">Internship</option>
                                         <option value="placement">Placement</option>
                                     </select>
+                                    {formik.errors.job_type ? <div className="text-red-700">{formik.errors.job_type}</div> : null}
                                 </div>
                             </div>
 
@@ -119,6 +158,7 @@ const Addjobs = () => {
                                 <div>
                                     <label htmlFor="quaification" className="mb-2 block text-sm font-medium text-gray-700">Quaification Require</label>
                                     <input type="text" name="quaification" id="quaification" className="border-2 w-full p-2 rounded-md" placeholder="Quaification Require" />
+                                    
                                 </div>
                                 <div>
                                     <label htmlFor="skill" className="mb-2 block text-sm font-medium text-gray-700">Skill (Separate with comma)</label>
@@ -135,11 +175,13 @@ const Addjobs = () => {
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                                         <div>
                                             <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-700">E-Mail</label>
-                                            <input type="email" name="email" id="email" className="border-2 w-full p-2 rounded-md" placeholder="E-Mail" />
+                                            <input type="email" name="email" id="email" className="border-2 w-full p-2 rounded-md" placeholder="E-Mail"  value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                                            {formik.errors.email ? <div className="text-red-700">{formik.errors.email}</div> : null}
                                         </div>
                                         <div>
                                             <label htmlFor="number" className="mb-2 block text-sm font-medium text-gray-700">Phone Number</label>
-                                            <input type="telephone" name="phone_number" id="number" className="border-2 w-full p-2 rounded-md" placeholder="Phone Number" />
+                                            <input type="telephone" name="phone_number" id="number" className="border-2 w-full p-2 rounded-md" placeholder="Phone Number" value={formik.values.phone_number} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+                                            {formik.errors.phone_number ? <div className="text-red-700">{formik.errors.phone_number}</div> : null}
                                         </div>
                                         <div>
                                             <label htmlFor="wlink" className="mb-2 block text-sm font-medium text-gray-700">Website Link</label>
@@ -151,33 +193,38 @@ const Addjobs = () => {
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                                         <div>
                                             <label htmlFor="address" className="mb-2 block text-sm font-medium text-gray-700">Address</label>
-                                            <input type="text" name="address" id="address" className="border-2 w-full p-2 rounded-md text-gray-700" placeholder="Address" />
+                                            <input type="text" name="address" id="address" className="border-2 w-full p-2 rounded-md text-gray-700" placeholder="Address" value={formik.values.address} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+                                            {formik.errors.address ? <div className="text-red-700">{formik.errors.address}</div> : null}
                                         </div>
                                         <div>
                                             <label htmlFor="city" className="mb-2 block text-sm font-medium text-gray-700">City</label>
-                                            <input type="text" name="city" id="city" className="border-2 w-full p-2 rounded-md" placeholder="City" />
+                                            <input type="text" name="city" id="city" className="border-2 w-full p-2 rounded-md" placeholder="City" value={formik.values.city} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+                                            {formik.errors.city ? <div className="text-red-700">{formik.errors.city}</div> : null}
                                         </div>
                                         <div>
                                             <label htmlFor="state" className="mb-2 block text-sm font-medium text-gray-700">State</label>
-                                            <input type="text" name="state" id="state" className="border-2 w-full p-2 rounded-md" placeholder="State" />
+                                            <input type="text" name="state" id="state" className="border-2 w-full p-2 rounded-md" placeholder="State" value={formik.values.state} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+                                            {formik.errors.state ? <div className="text-red-700">{formik.errors.state}</div> : null}
                                         </div>
                                     </div>
 
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                                         <div>
                                             <label htmlFor="country" className="mb-2 block text-sm font-medium text-gray-700">Country</label>
-                                            <input type="text" name="country" id="country" className="border-2 w-full p-2 rounded-md text-gray-700" placeholder="Country" />
+                                            <input type="text" name="country" id="country" className="border-2 w-full p-2 rounded-md text-gray-700" placeholder="Country" value={formik.values.country} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+                                            {formik.errors.country ? <div className="text-red-700">{formik.errors.country}</div> : null}
                                         </div>
                                         <div>
                                             <label htmlFor="zip" className="mb-2 block text-sm font-medium text-gray-700">Zip Code</label>
-                                            <input type="number" name="zip_code" id="zip" className="border-2 w-full p-2 rounded-md" placeholder="Zip Code" />
+                                            <input type="number" name="zip_code" id="zip" className="border-2 w-full p-2 rounded-md" placeholder="Zip Code" value={formik.values.zip_code} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+                                            {formik.errors.zip_code ? <div className="text-red-700">{formik.errors.zip_code}</div> : null}
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
-                        <button className="w-full text-white bg-green-600 rounded-md p-3 font-semibold mt-6">SUBMIT</button>
+                        <button className="w-full text-white bg-green-600 rounded-md p-3 font-semibold mt-6" type="submit">SUBMIT</button>
                 </form>
             </div>
         </>
