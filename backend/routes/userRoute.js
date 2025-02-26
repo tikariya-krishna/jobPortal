@@ -53,12 +53,12 @@ router.post('/contact', async (req,res)=>{
 // login route
 router.post('/login', async (req,res)=>{
     try{
-        if(!req.body.password || !req.body.email || !req.body.role){
+        if(!req.body.email || !req.body.password || !req.body.role){
             return res.status(400).send({message: 'send all required fields',});
         }
         const newUser = {
-            password: req.body.password,
             email : req.body.email,
+            password: req.body.password,
             role: req.body.role,
         };
         const user = await User.findOne(newUser);
