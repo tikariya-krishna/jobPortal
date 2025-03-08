@@ -66,7 +66,7 @@ const EditProfile = () =>{
                             </div>
 
                             <div className="pt-3">
-                                <label htmlFor="uProfile">User Profile</label>
+                                <label htmlFor="uProfile">Avatar</label>
                                 <input type="file" id="uProfile" name="uProfile" className="border-2 w-full p-2 rounded-md"/>
                             </div>
 

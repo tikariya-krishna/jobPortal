@@ -1,16 +1,32 @@
 import React from "react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import list from "../lists/jobPost.js";
 
 
 export default Home = () =>{
     const [job , setjobs ] = useState("first");
-    const jobToDisplay = list[job]; 
+    // const jobToDisplay = list[job]; 
+    const [user, setUser] = useState(null); // Store user data
+
+    useEffect(() => {
+        //  Get user data from localStorage
+        const loggedInUser = localStorage.getItem("user");
+        if (loggedInUser) {
+            setUser(JSON.parse(loggedInUser));
+        }
+    }, []);
+
+    const jobToDisplay = list[job];
+
     return(
         <>
         <div className="">
           <header className="h-screen bg-background-image bg-cover flex" id="home">
             <div className="container m-auto w-1/2 lg:w-full lg:px-32 lg:py-32">
+
+             {/* Display User Name  */}
+             {user && <h2 className="text-white">Welcome, {user.name}!</h2>}
+
               <h1 className="sm:text-sm md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold text-white pb-4">Search Between More <br/> Then <span className="text-green-600">50,000</span> Open Jobs.</h1>
 
               <div className="pb-4">

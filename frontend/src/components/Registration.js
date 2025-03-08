@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 
 async function formSubmit(data, setStatus) {
     try {
-        const res = await fetch("http://localhost:3000/user", { // Ensure correct backend port
+        const res = await fetch("http://localhost:3001/user/register", { // Ensure correct backend port
             method: "POST",
             headers: {
                 "Content-Type": "application/json", // Fix: Specify JSON format
@@ -25,6 +25,7 @@ async function formSubmit(data, setStatus) {
     
         const result = await res.json();
         setStatus({ msg: "Registration Successful!", sent: true });
+        return true;
     } catch (error) {
         setStatus({ msg: "Error: " + error.message, sent: false });
         console.error("Error:", error);
@@ -44,6 +45,7 @@ export default Registration = () =>{
             phone: '',
             role: '',
             created: '15/02/2025 12:12:00 AM'
+                
         },
         validationSchema: Yup.object({
             name: Yup.string().required('This is a required field'),
@@ -52,8 +54,12 @@ export default Registration = () =>{
             cpassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required('This is a required field'),
             phone: Yup.string().matches(/^\d{10}$/, 'Phone number must be 10 digits').required('This is a required field'),
         }),
-        onSubmit: values => {
-          formSubmit(JSON.stringify(values, null, 2), setStatus)
+        onSubmit: async (values, { resetForm }) => { 
+            const success = await formSubmit(JSON.stringify(values, null, 2), setStatus);
+            
+            if (success) {
+                resetForm(); // ✅ Clear form after successful registration
+            }
         },
       });
 
@@ -108,10 +114,10 @@ export default Registration = () =>{
                         </div>
                     </div>
 
-                    <div className="mt-5 grid grid-cols-2">  
-                        <div className="text-zinc-600 font-semibold"><label htmlFor="seeker">Job Seeker</label> <input type="radio" name="empType" id="seeker" value="job_seeker" onChange={(e) => formik.setFieldValue("role", e.target.value)} checked={formik.values.role === "job_seeker"}/></div>
-                        <div className="text-zinc-600 font-semibold"><label htmlFor="provider">Job Provider</label> <input type="radio" name="empType" id="provider" value="job_provider" onChange={(e) => formik.setFieldValue("role", e.target.value)} checked={formik.values.role === "job_provider"}/></div>    
-                    </div>
+                        <div className="mt-5 grid grid-cols-2">  
+                            <div className="text-zinc-600 font-semibold"><label htmlFor="seeker">Job Seeker</label> <input type="radio" name="empType" id="seeker" value="job_seeker" onChange={(e) => formik.setFieldValue("role", e.target.value)} checked={formik.values.role === "job_seeker"}/></div>
+                            <div className="text-zinc-600 font-semibold"><label htmlFor="provider">Job Provider</label> <input type="radio" name="empType" id="provider" value="job_provider" onChange={(e) => formik.setFieldValue("role", e.target.value)} checked={formik.values.role === "job_provider"}/></div>    
+                        </div>
 
                     <div className="text-center mt-5">
                         {status && status.msg && (

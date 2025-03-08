@@ -6,34 +6,40 @@ import { useState } from "react";
 import * as Yup from 'yup';
 
 
+
 async function formSubmit(data, setStatus) {
     try {
-        const res = await fetch("http://localhost:3000/user/login", { // Ensure correct backend port
+        const res = await fetch("http://localhost:3001/user/login", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json", // Fix: Specify JSON format
+                "Content-Type": "application/json",
+
             },
             body: data,
         });
 
-        const result = await res.json(); 
-    
+        const result = await res.json();
+
         if (!res.ok) {
-            const result = await res.json();
-            var errMsg = result.message;
-            setStatus({ msg: "Error: " + errMsg, sent: false });
+            setStatus({ msg: "Error: " + result.message, sent: false });
             return false;
-            //throw new Error(`HTTP error! Status: ${res.status}`);
         }
-    
-        
+
+        // ✅ Store user data in localStorage
+        localStorage.setItem("userToken", JSON.stringify(result.token));
+        localStorage.setItem("user", JSON.stringify(result.user));
+
         setStatus({ msg: "Login Successful!", sent: true });
-        
+
+        // ✅ Redirect to Home Page
+        window.location.href = "/"; // Redirect to home page after login
+
     } catch (error) {
         setStatus({ msg: "Error: " + error.message, sent: false });
         console.error("Error:", error);
     }
 }
+
 
 
 

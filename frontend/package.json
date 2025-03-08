@@ -15,13 +15,16 @@
     "parcel": "^2.13.3",
     "postcss": "^8.4.49",
     "process": "^0.11.10",
+    "react-router-dom": "^7.2.0",
     "tailwindcss": "^3.4.17"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.0",
+    "@heroicons/react": "^2.2.0",
     "formik": "^2.4.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.1.1",
+    "react-router": "^7.2.0",
     "yup": "^1.6.1"
   },
   "browserslist": [

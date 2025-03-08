@@ -12,7 +12,7 @@ const UserProfile = () => {
         <div className='border-2 rounded-md'><EditProfile/></div>
     </div>
     </>
-  )
+  ) 
 }
 
 export default UserProfile

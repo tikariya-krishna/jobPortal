@@ -14,6 +14,7 @@ import Addjobs from "./components/AddJobs.js";
 import CompnayInfo from "./components/CompnayInfo.js";
 import JobPostDetail from "./components/innerCom/JobPostDetail.js";
 import Contact from "./components/Contact.js";
+import ManageJobs from "./components/innerCom/ManageJobs.js";
 
  // react component
  const AppLayout = () =>{
@@ -24,6 +25,7 @@ import Contact from "./components/Contact.js";
                               <Routes>
                                 <Route path='/' element={<Home/>}/>
                                 <Route path='/jobs' element={<Jobs/>}/>
+                                <Route path="/managejobs" element={<ManageJobs/>}/>
                                 <Route path='/login' element={<Login/>}/> 
                                 <Route path='/userprofile' element={<UserProfile/>}/> 
                                 <Route path='/compannyinfo' element={<CompnayInfo/>}/> 

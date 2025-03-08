@@ -5,29 +5,55 @@ import { useState } from "react";
 import * as yup from 'yup';
 
 
-async function formSubmit(data,setStatus) {
-    try{
-        const res = await fetch("http://localhost:3000/addjobs",{
+// async function formSubmit(data,setStatus) {
+//     try{
+//         const res = await fetch("http://localhost:3001/addjobs",{
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json", // Fix: Specify JSON format
+//             },
+//             body: data, 
+//         });
+
+//         if(!res.ok){
+//             const result = await res.json();
+//             var errMsg = result.message;
+//             setStatus({msg: "Error: " + errMsg, sent: false});
+//             return false;
+//             }
+//             const result = await res.json();
+//             setStatus({msg: "Registration Successfull",sent: true});
+//         }catch(error){
+//             setStatus({msg:"Error: " + error.message,sent: false});
+//             console.error("Error", error);
+//         }
+//     }
+
+async function formSubmit(values, setStatus) {
+    try {
+        console.log(values);
+        const res = await fetch("http://localhost:3001/jobs/add ", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json", // Fix: Specify JSON format
+                "Content-Type": "application/json",
             },
-            body: data, 
+            body: values, // Send FormData instead of JSON
         });
 
-        if(!res.ok){
+        if (!res.ok) {
             const result = await res.json();
-            var errMsg = result.message;
-            setStatus({msg: "Error: " + errMsg, sent: false});
-            return false;
-            }
-            const result = await res.json();
-            setStatus({msg: "Registration Successfull",sent: true});
-        }catch(error){
-            setStatus({msg:"Error: " + error.message,sent: false});
-            console.error("Error", error);
+            setStatus({ msg: "Error: " + result.message, sent: false });
+            return;
         }
+        
+
+        const result = await res.json();
+        setStatus({ msg: "Job added successfully!", sent: true });
+    } catch (error) {
+        setStatus({ msg: "Error: " + error.message, sent: false });
+        console.error("Error", error);
     }
+}
 
 const Addjobs = () => {
 
@@ -41,7 +67,7 @@ const Addjobs = () => {
                         salary_range : "",
                         vacancy : "",
                         experiance : "",
-                        logo : "",
+                        // logo : "",
                         job_type : "",
                         email : "",
                         phone_number : "",
@@ -59,7 +85,7 @@ const Addjobs = () => {
                         salary_range: yup.string().required('This is a required field'),
                         vacancy: yup.number().required('This is a required field'),
                         experiance: yup.number().required('This is a required field'),
-                        logo: yup.mixed().required('This is a required field'),
+                        // logo: yup.mixed().required('This is a required field'),
                         job_type: yup.string().required('This is a required field'),
                         email: yup.string().required('This is a required field'),
                         phone_number: yup.string().required('This is a required field'),
@@ -69,7 +95,7 @@ const Addjobs = () => {
                         country: yup.string().required('This is a required field'),
                         zip_code: yup.string().required('This is a required field'),
                     }),onSubmit: (values) => {
-                        formSubmit(values, setStatus);
+                        formSubmit(JSON.stringify(values, null, 2), setStatus);
                     },
     });
 
@@ -93,7 +119,7 @@ const Addjobs = () => {
                                     <input type="text" name="company_name" id="cname" className="border-2 w-full p-2 rounded-md" placeholder="Company Name" value={formik.values.company_name} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
                                     {formik.errors.company_name ? <div className="text-red-700">{formik.errors.company_name}</div> : null}
                                 </div>
-                                <div>
+                                <div> 
                                     <label htmlFor="category" className="mb-2 block text-sm font-medium text-gray-700">Category</label>
                                     <select className="border-2 w-full p-2 rounded-md text-gray-700" id="category" name="category"  value={formik.values.category} onChange={formik.handleChange} onBlur={formik.handleBlur}>
                                         <option >Category</option>
@@ -113,7 +139,7 @@ const Addjobs = () => {
                                 </div>
                                 <div>
                                     <label htmlFor="category" className="mb-2 block text-sm font-medium text-gray-700">Salary Range</label>
-                                    <select className="border-2 w-full p-2 rounded-md text-gray-700" id="category" name="salary_range" value={formik.values.salary_range} onChange={formik.handleChange} onBlur={formik.handleBlur}>
+                                    <select className="border-2 w-full p-2 rounded-md text-gray-700" id="salary_range" name="salary_range" value={formik.values.salary_range} onChange={formik.handleChange} onBlur={formik.handleBlur}>
                                         <option>Salary Range</option>
                                         <option value="1000">$1000</option>
                                         <option value="2000">$2000</option>
@@ -135,14 +161,28 @@ const Addjobs = () => {
                                     <input type="text" name="experiance" id="experience" className="border-2 w-full p-2 rounded-md" placeholder="Experience" value={formik.values.experiance} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
                                     {formik.errors.experiance ? <div className="text-red-700">{formik.errors.experiance}</div> : null}
                                 </div>
-                                <div>
+                                {/* <div>
                                     <label htmlFor="logo" className="mb-2 block text-sm font-medium text-gray-700">Company Logo</label>
                                     <input type="file" name="logo" id="logo" className="border-2 w-full p-2 rounded-md" placeholder="Company Logo"  value={formik.values.logo} onChange={(event) => formik.setFieldValue("logo", event.currentTarget.files[0])} onBlur={formik.handleBlur}/>
                                     {formik.errors.logo ? <div className="text-red-700">{formik.errors.logo}</div> : null}
-                                </div>
+                                </div> */}
+                                {/* <div>
+                                    <label htmlFor="logo" className="mb-2 block text-sm font-medium text-gray-700">
+                                        Company Logo
+                                    </label>
+                                    <input
+                                        type="file"
+                                        name="logo"
+                                        id="logo"
+                                        className="border-2 w-full p-2 rounded-md"
+                                        onChange={(event) => formik.setFieldValue("logo", event.currentTarget.files[0])}
+                                        onBlur={formik.handleBlur}
+                                    />
+                                    {formik.errors.logo && <div className="text-red-700">{formik.errors.logo}</div>}
+                                </div> */}
                                 <div>
                                     <label htmlFor="category" className="mb-2 block text-sm font-medium text-gray-700">Job Type</label>
-                                    <select className="border-2 w-full p-2 rounded-md text-gray-700" id="category" name="job_type" value={formik.values.job_type} onChange={formik.handleChange} onBlur={formik.handleBlur}>
+                                    <select className="border-2 w-full p-2 rounded-md text-gray-700" id="job_type" name="job_type" value={formik.values.job_type} onChange={formik.handleChange} onBlur={formik.handleBlur}>
                                         <option >Job Type</option>
                                         <option value="part_time">Part Time</option>
                                         <option value="full_time">Full Time</option>
@@ -223,8 +263,19 @@ const Addjobs = () => {
 
                                 </div>
                             </div>
+                        </div>  
+                        <div className="max-w-lg mt-8">
+                        {status && status.msg && (
+                            <>
+                            <div className={` ${ status.sent ? "bg-green-100" : "bg-red-100"} border-l-4 border-green-500 text-green-700 p-4 rounded-lg shadow-lg`}>
+                            <p className="font-medium">{ status.sent ? "Success!" : "Error!"}</p>
+                            <p>{status.msg}</p>
+                            </div>
+                            </>
+                        )}
+                            
                         </div>
-                        <button className="w-full text-white bg-green-600 rounded-md p-3 font-semibold mt-6" type="submit">SUBMIT</button>
+                        <button className=" text-white bg-green-600 rounded-md p-3 font-semibold mt-6" type="submit">Submit</button>
                 </form>
             </div>
         </>
