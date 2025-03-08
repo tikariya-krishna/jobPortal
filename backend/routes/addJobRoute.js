@@ -83,7 +83,7 @@ router.post('/add' , async (req,res)=>{
             !req.body.city || 
             !req.body.state || 
             !req.body.country || 
-            !req.body.zip_code 
+            !req.body.zip_code
         ){return res.status(400).send({message: 'send all required fields,'});}
 
         const newJob = {
@@ -102,7 +102,8 @@ router.post('/add' , async (req,res)=>{
             city : req.body.city,
             state : req.body.state,
             country : req.body.country,
-            zip_code : req.body.zip_code
+            zip_code : req.body.zip_code,
+            createdAt: new Date()
         };
         const jobs = await AddJob.create(newJob);
         return res.status(201).send(jobs);
@@ -130,6 +131,36 @@ router.post('/add' , async (req,res)=>{
 //         res.status(500).json({ error: "File upload failed" });
 //     }
 // });
+
+
+// Route for delete one user from database
+ router.delete('/jobDelete/:id', async (req,res)=>{
+     try{
+         
+         const { id } = req.params;
+ 
+         const result = await AddJob.findByIdAndDelete(id);
+         if(!result){
+             return res.status(400).json({message: 'Job not found'});
+         }
+ 
+         return res.status(200).send({message: 'job delete succesfully'});
+     }catch(error){
+         console.log(error.message);
+         return res.status(500).send({message: error.message});
+     }
+ });
+
+router.get('/managejobs', async (req,res)=>{
+    try{
+        const addJob = await AddJob.find({});
+
+        return res.status(200).json(addJob);
+    }catch(error){
+        console.log(error.message);
+        return res.status(500).send({message: error.message});
+    }
+});
 
 
 export default router;

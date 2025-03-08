@@ -25,7 +25,11 @@ import {mongoose} from "mongoose";
             status:{
                 type : Boolean,
                 required : true,
-            }
+            },
+            created:{
+                type : String,
+                required : false,
+            },
         }
     )
         
