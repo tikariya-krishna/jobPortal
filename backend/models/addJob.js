@@ -31,10 +31,10 @@ const addjobSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        logo: {
-            type: String,
-            required: true
-        },
+        // logo: {
+        //     type: String,
+        //     required: true
+        // },
         job_type:{
             type: String,
             required: true
