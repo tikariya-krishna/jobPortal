@@ -63,7 +63,7 @@ import path from "path";
 import { AddJob } from "../models/addJob.js";
 
 const router = express.Router();
-// const upload = multer({ dest: "uploads/" }); // Save uploaded files in 'uploads' folder
+
 
 router.post('/add' , async (req,res)=>{
     try{
@@ -114,24 +114,6 @@ router.post('/add' , async (req,res)=>{
 });
 
 
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         cb(null, 'uploads/'); // Store files in the 'uploads' folder
-//     },
-//     filename: (req, file, cb) => {
-//         cb(null, Date.now() + path.extname(file.originalname)); // Rename file
-//     }
-// });
-
-// router.post("/upload", upload.single("logo"), (req, res) => {
-//     try {
-//         console.log(req.file); // Uploaded file info
-//         res.json({ message: "File uploaded successfully", file: req.file });
-//     } catch (error) {
-//         res.status(500).json({ error: "File upload failed" });
-//     }
-// });
-
 
 // Route for delete one user from database
  router.delete('/jobDelete/:id', async (req,res)=>{
@@ -156,6 +138,51 @@ router.get('/managejobs', async (req,res)=>{
         const addJob = await AddJob.find({});
 
         return res.status(200).json(addJob);
+    }catch(error){
+        console.log(error.message);
+        return res.status(500).send({message: error.message});
+    }
+});
+
+router.get('/', async (req,res)=>{
+    try{
+        const addJob = await AddJob.find({});
+
+        return res.status(200).json(addJob);
+    }catch(error){
+        console.log(error.message);
+        return res.status(500).send({message: error.message});
+    }
+});
+
+router.put('/updatejob/:id', async (req,res)=>{
+    try{
+        if(!req.body.job_title || 
+            !req.body.company_name || 
+            !req.body.category || 
+            !req.body.discription || 
+            !req.body.salary_range || 
+            !req.body.vacancy || 
+            !req.body.experiance || 
+            !req.body.job_type || 
+            !req.body.email || 
+            !req.body.phone_number || 
+            !req.body.address || 
+            !req.body.city || 
+            !req.body.state || 
+            !req.body.country || 
+            !req.body.zip_code
+        ){return res.status(400).send({message: 'send all required fields,'});}
+       
+
+        const {id} = req.params;
+        const result = await AddJob.findByIdAndUpdate(id,req.body);
+
+        if(!result){
+            return res.status(404).json({message: 'Job not found'});
+        }
+    
+        return res.status(200).send({message:'Job Update Successfully'});    
     }catch(error){
         console.log(error.message);
         return res.status(500).send({message: error.message});
