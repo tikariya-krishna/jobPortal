@@ -1,13 +1,14 @@
-import ReactDOM, { createRoot } from 'react-dom/client';
+
 import { Outlet, Link } from "react-router";
 import React, { useState } from "react";
 import logo from "./images/logo.png";
-import Registration from './Registration';
 import Dropdown from './innerCom/DropDown';
+
 
 const user = localStorage.getItem("user");
 const userToken = localStorage.getItem("userToken");
 const userRole = JSON.parse(user)?.role;
+const userName = JSON.parse(user)?.name;
 
 const Menu = () => {
   return (
@@ -19,9 +20,9 @@ const Menu = () => {
         <span>Hirehub</span>
       </div>
       <div className="">
+        
         <ul className='md:flex'>
           <li className='p-1'><Link to="/" className='max-mobile:block max-mobile:text-center max-mobile:mx-5 md:mx-0 md:inline rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Home</Link></li>
-          <li className='p-1'><Link to="/managejobs" className='max-mobile:block max-mobile:text-center max-mobile:mx-5 md:mx-0 md:inline rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>ManageJobs</Link></li>
           {(userRole == "job_seeker") &&
           <>
           <li className='p-1'><Link to="/jobs" className='max-mobile:block max-mobile:text-center max-mobile:mx-5 md:mx-0 md:inline rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Jobs</Link></li>
@@ -32,6 +33,7 @@ const Menu = () => {
           <>
           <li className='p-1'><Link to="/addjobs"  className='max-mobile:block max-mobile:text-center max-mobile:mx-5 md:mx-0 md:inline rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Add Jobs</Link></li>
           <li className='p-1'><Link to="/compannyinfo"  className='max-mobile:block max-mobile:text-center max-mobile:mx-5 md:mx-0 md:inline rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Company Profile</Link></li>
+          <li className='p-1'><Link to="/managejobs" className='max-mobile:block max-mobile:text-center max-mobile:mx-5 md:mx-0 md:inline rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>ManageJobs</Link></li>
           </>
           }
           <li className='p-1'><Link to="/contact" className='max-mobile:block max-mobile:text-center max-mobile:mx-5 md:mx-0 md:inline rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Contact</Link></li>

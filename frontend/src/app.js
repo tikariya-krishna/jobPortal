@@ -15,6 +15,7 @@ import CompnayInfo from "./components/CompnayInfo.js";
 import JobPostDetail from "./components/innerCom/JobPostDetail.js";
 import Contact from "./components/Contact.js";
 import ManageJobs from "./components/innerCom/ManageJobs.js";
+import UpdateJobs from "./components/innerCom/UpdateJob.js";
 
  // react component
  const AppLayout = () =>{
@@ -31,6 +32,7 @@ import ManageJobs from "./components/innerCom/ManageJobs.js";
                                 <Route path='/compannyinfo' element={<CompnayInfo/>}/> 
                                 <Route path='/dashboard' element={<DashBoard/>}/> 
                                 <Route path='/addjobs' element={<Addjobs/>}/>
+                                <Route path='/updatejob' element={<UpdateJobs/>}/>
                                 <Route path="/jobpostdeatil" element={<JobPostDetail/>}/>
                                 <Route path='/logout' element={<LogOut/>}/> 
                                 <Route path='/registration' element={<Registration/>}/>

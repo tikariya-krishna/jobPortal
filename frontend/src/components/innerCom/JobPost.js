@@ -1,7 +1,23 @@
 import React from 'react'
 import list from '../../lists/JobPostList';
-import {Outlet,Link} from 'react-router'
+import {Outlet,Link} from 'react-router';
+import { useState, useEffect } from "react";
+import { Link } from "react-router";
+import axios from 'axios';
+
 const JobPost = () => {
+  const [jobs, setJobs] = useState([]);
+    useEffect(()=>{
+        axios.get('http://localhost:3001/jobs')
+            .then((response) => {
+                console.log("API Response:", response.data);
+                setJobs(response.data); 
+            })
+            .catch((error) => {
+                console.log("Error fetching jobs:", error);
+            });
+    },[]);
+
   return (
     <div className='text-slate-700 md:mx-5 lg:mx-0 mobile:mx-3'>
       <div className='flex mb-7 justify-between'>
@@ -18,16 +34,16 @@ const JobPost = () => {
 
       <div className=''>
         <div className=''>
-          {list.map((ele)=>(
+          {jobs.map((ele)=>(
             <>
               <div className='border-2 rounded-md p-3 mb-5 shadow-md'>
                 <ul>
                   <li>
                   
                     <div className='flex mb-3'>
-                      <img src={ele.logo} alt='LOGO'width={"55px"} height={"55px"} className='rounded-full'/>
-                      <div className='ms-5'>
-                        <p className='font-bold text-xl'>{ele.jobTitle}</p><p>{ele.jobField}</p>
+                      {/* <img  alt='LOGO'width={"55px"} height={"55px"} className='rounded-full'/> */}
+                      <div className='  ms-5'>
+                        <p className='font-bold text-xl'>{ele.job_title}</p><p>{ele.category}</p>
                       </div>
                     </div>
 
@@ -38,7 +54,7 @@ const JobPost = () => {
                         <div className='me-10'>
                           <ul>
                             <li>Job Id</li>
-                            <li className='pt-2'>Job Type</li>
+                            <li className='pt-2'>Company Name</li>
                             <li className='pt-2'>skill</li>
                             <li className='pt-2'>experiance</li>
                             <li className='pt-2'>Location</li>
@@ -47,11 +63,12 @@ const JobPost = () => {
 
                         <div className='w-96 align-left'>
                           <ul>
-                            <li>{ele.jobId}</li>
-                            <li className='pt-2'>{ele.jobType}</li>
-                            <li className='pt-2'><span className='text-green-600 bg-green-100 px-2 py-0.5 font-semibold'>{ele.skill[0]}</span> <span className='text-green-600 bg-green-100 px-2 py-0.5 font-semibold'>{ele.skill[1]}</span> <span className='text-green-600 bg-green-100 px-2 py-0.5 font-semibold'>{ele.skill[2]}</span> <span className='text-green-600 bg-green-100 px-2 py-0.5 font-semibold'>{ele.skill[0]}</span></li>
+                            <li>{ele.company_name}</li>
+                            <li className='pt-2'>{ele.job_type}</li>
+                            <li className='pt-2'><span className='text-green-600 bg-green-100 px-2 py-0.5 font-semibold rounded-md'>{ele.category}</span></li> 
+                            {/* <span className='text-green-600 bg-green-100 px-2 py-0.5 font-semibold'>{ele.skill[1]}</span> <span className='text-green-600 bg-green-100 px-2 py-0.5 font-semibold'>{ele.skill[2]}</span> <span className='text-green-600 bg-green-100 px-2 py-0.5 font-semibold'>{ele.skill[0]}</span> */}
                             <li className='pt-2'>{ele.experiance}</li>
-                            <li className='pt-2'>{ele.location}</li>
+                            <li className='pt-2'>{ele.address}</li>
                           </ul>
                         </div>
                       </div>

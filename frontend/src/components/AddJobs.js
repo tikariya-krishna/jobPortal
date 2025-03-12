@@ -4,31 +4,6 @@ import { useFormik, validateYupSchema } from "formik";
 import { useState } from "react";
 import * as yup from 'yup';
 
-
-// async function formSubmit(data,setStatus) {
-//     try{
-//         const res = await fetch("http://localhost:3001/addjobs",{
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json", // Fix: Specify JSON format
-//             },
-//             body: data, 
-//         });
-
-//         if(!res.ok){
-//             const result = await res.json();
-//             var errMsg = result.message;
-//             setStatus({msg: "Error: " + errMsg, sent: false});
-//             return false;
-//             }
-//             const result = await res.json();
-//             setStatus({msg: "Registration Successfull",sent: true});
-//         }catch(error){
-//             setStatus({msg:"Error: " + error.message,sent: false});
-//             console.error("Error", error);
-//         }
-//     }
-
 async function formSubmit(values, setStatus) {
     try {
         console.log(values);
@@ -282,3 +257,9 @@ const Addjobs = () => {
     )
 }
 export default Addjobs
+
+
+
+
+
+
