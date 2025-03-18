@@ -3,12 +3,18 @@ import TitleContaint from "./innerCom/TitleContaint";
 import { useFormik, validateYupSchema } from "formik";
 import { useState } from "react";
 import * as yup from 'yup';
-
+import { useParams } from "react-router";
+import useJobDetails from "./jobs/useJobDetails";
 async function formSubmit(values, setStatus) {
     try {
-        console.log(values);
-        const res = await fetch("http://localhost:3001/jobs/add ", {
-            method: "POST",
+        var URL = "http://localhost:3001/jobs/add"
+        var methodCall = "POST";
+        if(values._id) {
+            URL = "http://localhost:3001/jobs/updatejob" + values._id;
+            methodCall = "PUT";
+        }
+        const res = await fetch(URL, {
+            method: methodCall,
             headers: {
                 "Content-Type": "application/json",
             },
@@ -30,48 +36,57 @@ async function formSubmit(values, setStatus) {
     }
 }
 
+
 const Addjobs = () => {
 
     const [status,setStatus] = useState(null);
+
+    const {jobId} = useParams();
+    const jobDetails = useJobDetails(jobId);
+    if(!jobDetails && !useFormik) {
+        return <h1>Loading..</h1>;
+    }
+    
     const formik = useFormik({
-        initialValues:{
-                        job_title : "",
-                        company_name : "",
-                        category : "",
-                        discription : "",
-                        salary_range : "",
-                        vacancy : "",
-                        experiance : "",
-                        // logo : "",
-                        job_type : "",
-                        email : "",
-                        phone_number : "",
-                        address : "",
-                        city : "",
-                        state : "",
-                        country : "",
-                        zip_code : "",
-                    },
-                    validationSchema : yup.object({
-                        job_title: yup.string().required('This is a required field'),
-                        company_name: yup.string().required('This is a required field'),
-                        category: yup.string().required('This is a required field'),
-                        discription: yup.string().required('This is a required field'),
-                        salary_range: yup.string().required('This is a required field'),
-                        vacancy: yup.number().required('This is a required field'),
-                        experiance: yup.number().required('This is a required field'),
-                        // logo: yup.mixed().required('This is a required field'),
-                        job_type: yup.string().required('This is a required field'),
-                        email: yup.string().required('This is a required field'),
-                        phone_number: yup.string().required('This is a required field'),
-                        address: yup.string().required('This is a required field'),
-                        city: yup.string().required('This is a required field'),
-                        state: yup.string().required('This is a required field'),
-                        country: yup.string().required('This is a required field'),
-                        zip_code: yup.string().required('This is a required field'),
-                    }),onSubmit: (values) => {
-                        formSubmit(JSON.stringify(values, null, 2), setStatus);
-                    },
+        enableReinitialize: true,
+        initialValues: {
+            _id: jobDetails?._id || "",
+            job_title: jobDetails?.job_title || "",
+            company_name: jobDetails?.company_name || "",
+            category: jobDetails?.category || "",
+            discription: jobDetails?.discription || "",
+            salary_range: jobDetails?.salary_range || "",
+            vacancy: jobDetails?.vacancy || "",
+            experiance: jobDetails?.experiance || "",
+            job_type: jobDetails?.job_type || "",
+            email: jobDetails?.email || "",
+            phone_number: jobDetails?.phone_number || "",
+            address: jobDetails?.address || "",
+            city: jobDetails?.city || "",
+            state: jobDetails?.state || "",
+            country: jobDetails?.country || "",
+            zip_code: jobDetails?.zip_code || "",
+        },
+        validationSchema: yup.object({
+            job_title: yup.string().required("This is a required field"),
+            company_name: yup.string().required("This is a required field"),
+            category: yup.string().required("This is a required field"),
+            discription: yup.string().required("This is a required field"),
+            salary_range: yup.string().required("This is a required field"),
+            vacancy: yup.number().required("This is a required field"),
+            experiance: yup.number().required("This is a required field"),
+            job_type: yup.string().required("This is a required field"),
+            email: yup.string().required("This is a required field"),
+            phone_number: yup.string().required("This is a required field"),
+            address: yup.string().required("This is a required field"),
+            city: yup.string().required("This is a required field"),
+            state: yup.string().required("This is a required field"),
+            country: yup.string().required("This is a required field"),
+            zip_code: yup.string().required("This is a required field"),
+        }),
+        onSubmit: (values) => {
+            formSubmit(values, setStatus); // Pass values directly without JSON.stringify
+        },
     });
 
     return (
@@ -85,6 +100,9 @@ const Addjobs = () => {
                         <div className="p-5">
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                                 <div>
+                                    {/* Getting job id */}
+                                    <input type="hidden" name="_id" value={formik.values._id} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+
                                     <label htmlFor="title" className="mb-2 block text-sm font-medium text-gray-700">Job Title</label>
                                     <input type="text" name="job_title" id="title" className="border-2 w-full p-2 rounded-md" placeholder="Job Title" value={formik.values.job_title} onChange={formik.handleChange} onBlur={formik.handleBlur} />
                                     {formik.errors.job_title ? <div className="text-red-700">{formik.errors.job_title}</div> : null}

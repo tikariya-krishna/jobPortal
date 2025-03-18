@@ -1,11 +1,12 @@
 import React from "react";
 import React, { useState, useEffect } from "react";
 import list from "../lists/jobPost.js";
-
+import axios from 'axios';
 
 export default Home = () =>{
-    const [job , setjobs ] = useState("first");
+    const [jobs , setJobs ] = useState([]);
     // const jobToDisplay = list[job]; 
+    
     const [user, setUser] = useState(null); // Store user data
 
     useEffect(() => {
@@ -16,7 +17,18 @@ export default Home = () =>{
         }
     }, []);
 
-    const jobToDisplay = list[job];
+    // const jobToDisplay = list[job];
+
+    useEffect(()=>{
+      axios.get('http://localhost:3001/jobs')
+          .then((response) => {
+              console.log("API Response:", response.data);
+              setJobs(response.data); 
+          })
+          .catch((error) => {
+              console.log("Error fetching jobs:", error);
+          });
+    },[]);
 
     return(
         <>
@@ -60,15 +72,13 @@ export default Home = () =>{
         </div>
 
         <div className="grid md:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3 gap-3 py-6">
-        {jobToDisplay.map((ele) => (
+        {jobs.map((ele) => (
           <>
             <div className="border-2 mx-5 py-2 rounded-md shadow-md hover:shadow-lg">
               <ul>
                 <li key={ele.id}>
                   <div className="ps-3 mb-7 mt-2"> 
-
-                    
-                    <span className="border-2 bg-green-100 text-green-800 border-green-600 font-semibold py-1 px-3 text-xs rounded-md">{ele.workStatus}</span>
+                    <span className="border-2 bg-green-100 text-green-800 border-green-600 font-semibold py-1 px-3 text-xs rounded-md">{ele.job_type}</span>  
                   </div>
 
                   <div className="flex items-center justify-center">

@@ -65,7 +65,7 @@ const JobPost = () => {
                           <ul>
                             <li>{ele.company_name}</li>
                             <li className='pt-2'>{ele.job_type}</li>
-                            <li className='pt-2'><span className='text-green-600 bg-green-100 px-2 py-0.5 font-semibold rounded-md'>{ele.category}</span></li> 
+                          <li className='pt-2'><span className='text-green-600 bg-green-100 px-2 py-0.5 font-semibold rounded-md'>{ele.category}</span></li> 
                             {/* <span className='text-green-600 bg-green-100 px-2 py-0.5 font-semibold'>{ele.skill[1]}</span> <span className='text-green-600 bg-green-100 px-2 py-0.5 font-semibold'>{ele.skill[2]}</span> <span className='text-green-600 bg-green-100 px-2 py-0.5 font-semibold'>{ele.skill[0]}</span> */}
                             <li className='pt-2'>{ele.experiance}</li>
                             <li className='pt-2'>{ele.address}</li>

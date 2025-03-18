@@ -13,7 +13,6 @@ async function formSubmit(data, setStatus) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-
             },
             body: data,
         });
@@ -25,6 +24,7 @@ async function formSubmit(data, setStatus) {
             return false;
         }
 
+        console.info("Token : " + result.token);
         // ✅ Store user data in localStorage
         localStorage.setItem("userToken", JSON.stringify(result.token));
         localStorage.setItem("user", JSON.stringify(result.user));

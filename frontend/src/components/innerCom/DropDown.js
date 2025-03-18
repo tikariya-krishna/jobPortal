@@ -3,6 +3,7 @@ import {Outlet,Link} from 'react-router'
 
 const user = localStorage.getItem("user");
 const userName = JSON.parse(user)?.name;
+const userRole = JSON.parse(user)?.role;
 
 const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +22,9 @@ const Dropdown = () => {
       {isOpen && (
         <div className="absolute mt-2 w-40 bg-black rounded-lg shadow-lg">
           <ul className="py-2">
-            <li><Link to="/userprofile" className=" mb-3 block p-3 rounded-md hover:shadow-md border-2 border-black hover:border-2 hover:border-white"><span>Profile</span></Link></li>
+            {(userRole == "job_seeker") && <><li><Link to="/userprofile" className=" mb-3 block p-3 rounded-md hover:shadow-md border-2 border-black hover:border-2 hover:border-white"><span>Profile</span></Link></li></>}
+            {(userRole == "job_provider") && <><li><Link to="/compannyinfo" className=" mb-3 block p-3 rounded-md hover:shadow-md border-2 border-black hover:border-2 hover:border-white"><span>Profile</span></Link></li></>}
+            
             <li><Link to="/logout" className="mb-3 block p-3 rounded-md hover:shadow-md border-2 border-black hover:border-2 hover:border-white"><span>Log out</span></Link></li>
           </ul>
         </div>

@@ -31,7 +31,8 @@ import UpdateJobs from "./components/innerCom/UpdateJob.js";
                                 <Route path='/userprofile' element={<UserProfile/>}/> 
                                 <Route path='/compannyinfo' element={<CompnayInfo/>}/> 
                                 <Route path='/dashboard' element={<DashBoard/>}/> 
-                                <Route path='/addjobs' element={<Addjobs/>}/>
+                                <Route path='/addjobs/' element={<Addjobs/>}/>
+                                <Route path='/addjobs/:jobId' element={<Addjobs/>}/>
                                 <Route path='/updatejob' element={<UpdateJobs/>}/>
                                 <Route path="/jobpostdeatil" element={<JobPostDetail/>}/>
                                 <Route path='/logout' element={<LogOut/>}/> 

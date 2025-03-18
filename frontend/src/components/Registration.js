@@ -38,7 +38,8 @@ export default Registration = () =>{
 
     const formik = useFormik({
         initialValues: {
-            name: '',
+            fname: '',
+            lname: '',
             email: '',
             password: '',
             cpassword: '',
@@ -48,7 +49,8 @@ export default Registration = () =>{
                 
         },
         validationSchema: Yup.object({
-            name: Yup.string().required('This is a required field'),
+            fname: Yup.string().required('This is a required field'),
+            lname: Yup.string().required('This is a required field'),
             email: Yup.string().email('Invalid email address').required('This is a required field'),
             password: Yup.string().min(8, 'Password must be at least 8 characters').required('This is a required field'),
             cpassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required('This is a required field'),
@@ -74,14 +76,23 @@ export default Registration = () =>{
                     
                     <div className="xl:grid xl:grid-cols-2 2xl:grid 2xl:grid-cols-2">
                         <div className="me-4">
-                            <label htmlFor="name" className="text-zinc-600 font-semibold">Name</label><br />
-                            <input type="text" name="name" placeholder="Name" id="name"
-                                value={formik.values.name} onChange={formik.handleChange} onBlur={formik.handleBlur}
+                            <label htmlFor="fname" className="text-zinc-600 font-semibold">First Name</label><br />
+                            <input type="text" name="fname" placeholder="First Name" id="fname"
+                                value={formik.values.fname} onChange={formik.handleChange} onBlur={formik.handleBlur}
                                 className="border-2 p-2 w-full rounded-md mt-2 hover:border-green-800" />
-                                {formik.errors.name ? <div className="text-red-700">{formik.errors.name}</div> : null}
+                                {formik.errors.fname ? <div className="text-red-700">{formik.errors.fname}</div> : null}
                                 <input type="hidden" name="created" id="created" value={formik.values.created} />
                         </div>
-                        <div className="max-xl:mt-5">
+                        
+                        <div className="me-4">
+                            <label htmlFor="lname" className="text-zinc-600 font-semibold">Last Name</label><br />
+                            <input type="text" name="lname" placeholder="Last Name" id="lname"
+                                value={formik.values.lname} onChange={formik.handleChange} onBlur={formik.handleBlur}
+                                className="border-2 p-2 w-full rounded-md mt-2 hover:border-green-800" />
+                                {formik.errors.lname ? <div className="text-red-700">{formik.errors.lname}</div> : null}
+                        </div>
+
+                        <div className="max-xl:mt-5 me-4 mt-3">
                             <label htmlFor="mail" className="text-zinc-600 font-semibold">Email</label><br />
                             <input type="email" name="email" placeholder="Email" id="mail"
                                 value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur}

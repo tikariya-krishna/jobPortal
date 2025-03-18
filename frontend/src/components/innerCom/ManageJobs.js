@@ -63,7 +63,7 @@ const ManageJobs = () => {
                                         </svg>
                                     </button>
                                     <button className="bg-white rounded">
-                                    <Link to="/updatejob" className=''>
+                                    <Link to={"/addjobs/"+ ele._id } className=''>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="blue" cursor="pointer">
                                         <path d="M3 17.25V21h3.75l11.06-11.06-3.75-3.75L3 17.25zm18.71-11.54c.39-.39.39-1.02 0-1.41l-2.54-2.54a.9959.9959 0 0 0-1.41 0L15.13 4.86l3.75 3.75 2.83-2.83z"/>
                                         </svg>
