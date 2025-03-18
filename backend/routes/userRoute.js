@@ -12,14 +12,15 @@ dotenv.config();
 const router = express.Router();
 
 router.get('/me', auth, async (req,res)=>{
+    console.log(req.user);
     res.send(req.user);
 })
 
 router.post("/register", async (req, res) => {
     try {
-        const { name, email, password, role } = req.body;
+        const { fname, lname, email, password, role } = req.body;
 
-        if (!name || !email || !password || !role) {
+        if (!fname || !lname || !email || !password || !role) {
             return res.status(400).json({ message: "All fields are required" });
         }
 
@@ -34,7 +35,8 @@ router.post("/register", async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, salt);
 
         const newUser = new User({
-            name,
+            fname,
+            lname,
             email,
             password: hashedPassword, // ✅ Store the hashed password
             role
@@ -104,20 +106,10 @@ router.post("/logout", auth, async (req, res) => {
 
 
 
-// Route for get all user from database
-router.get('/', async (req,res)=>{
-    try{
-        const user = await User.find({});
-
-        return res.status(200).json(user);
-    }catch(error){
-        console.log(error.message);
-        return res.status(500).send({message: error.message});
-    }
-});
 
 // Route for get one user from database
-router.get('/:id', async (req,res)=>{
+router.get('/:id', auth, async (req,res)=>{
+    
     try{
         const { id } = req.params;
         const user = await User.findById(id);
@@ -126,27 +118,34 @@ router.get('/:id', async (req,res)=>{
         console.log(error.message);
         return res.status(500).send({message: error.message});
     }
+    
 });
 
 // Route for update a user
-router.put('/:id', async (req,res)=>{
-    try{
-        if(!req.body.userId || !req.body.userName || !req.body.password || !req.body.email || !req.body.role || !req.body.created){
-            return res.status(400).send({message: 'send all required fields',});
-        }
+router.put('update/:id', async (req,res)=>{
+    // try{
+    //     if(!req.body.userId || !req.body.userfirstName || !req.body.userLastName || !req.body.password || !req.body.email || !req.body.role || !req.body.created){
+    //         return res.status(400).send({message: 'send all required fields',});
+    //     }
        
 
-        const {id} = req.params;
-        const result = await User.findByIdAndUpdate(id,req.body);
+    //     const {id} = req.params;
+    //     const result = await User.findByIdAndUpdate(id,req.body);
 
-        if(!result){
-            return res.status(404).json({message: 'User not found'});
-        }
+    //     if(!result){
+    //         return res.status(404).json({message: 'User not found'});
+    //     }
     
-        return res.status(200).send({message:'User Update Successfully'});    
-    }catch(error){
-        console.log(error.message);
-        return res.status(500).send({message: error.message});
+    //     return res.status(200).send({message:'User Update Successfully'});    
+    // }catch(error){
+    //     console.log(error.message);
+    //     return res.status(500).send({message: error.message});
+    // }
+    try {
+        const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.json(updatedUser);
+    } catch (error) {
+        res.status(500).json({ error: "Server error" });
     }
 });
 

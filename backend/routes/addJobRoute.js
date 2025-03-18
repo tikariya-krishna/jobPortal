@@ -1,62 +1,3 @@
-// import express from "express";
-// import multer from "multer";
-// import path from "path";
-// import { AddJob } from "../models/addJob.js";
-
-// const router = express.Router();
-
-// // Configure Multer for File Uploads
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         cb(null, "uploads/"); // Store files in 'uploads' folder
-//     },
-//     filename: (req, file, cb) => {
-//         cb(null, Date.now() + path.extname(file.originalname)); // Rename file
-//     }
-// });
-
-// const upload = multer({ storage });
-
-// // Route to Add Job with Image Upload
-// router.post("/add", upload.single("logo"), async (req, res) => {
-//     try {
-//         const { job_title, company_name, category, discription, salary_range, vacancy, experiance, job_type, email, phone_number, address, city, state, country, zip_code } = req.body;
-
-//         if (!job_title || !company_name || !category || !discription || !salary_range || !vacancy || !experiance || !job_type || !email || !phone_number || !address || !city || !state || !country || !zip_code) {
-//             return res.status(400).json({ message: "All required fields must be provided" });
-//         }
-
-//         const logo = req.file ? req.file.filename : null; // Store the filename
-
-//         const newJob = {
-//             job_title,
-//             company_name,
-//             category,
-//             discription,
-//             salary_range,
-//             vacancy,
-//             experiance,
-//             logo,
-//             job_type,
-//             email,
-//             phone_number,
-//             address,
-//             city,
-//             state,
-//             country,
-//             zip_code
-//         };
-
-//         const job = await AddJob.create(newJob);
-//         return res.status(201).json(job);
-//     } catch (error) {
-//         console.log(error);
-//         res.status(500).json({ message: error.message });
-//     }
-// });
-
-// export default router;
-
 import express from "express";
 import multer from "multer";
 import path from "path";
@@ -137,6 +78,18 @@ router.get('/managejobs', async (req,res)=>{
     try{
         const addJob = await AddJob.find({});
 
+        return res.status(200).json(addJob);
+    }catch(error){
+        console.log(error.message);
+        return res.status(500).send({message: error.message});
+    }
+});
+
+router.get('/:jobId', async (req, res) => {
+    try{
+        const { jobId } = req.params;
+        const addJob = await AddJob.findOne({_id: jobId});
+        
         return res.status(200).json(addJob);
     }catch(error){
         console.log(error.message);
