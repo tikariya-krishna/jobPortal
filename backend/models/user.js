@@ -15,19 +15,46 @@ dotenv.config();
             },
             password:{
                 type : String,
-                required : true,
+                required : false,
             },
             email:{
                 type : String,
                 required : true,
             },
+            role:{
+                type : String,
+                required : false,
+            },
+
+
+            // User update fields
             phone:{
                 type : String,
                 required : false,
             },
-            role:{
+            address:{
                 type : String,
-                required : true,
+                required : false,
+            },
+            gender:{
+                type : String,
+                required : false,
+            },
+            language:{
+                type : String,
+                required : false,
+            },
+            dob:{
+                type : String,
+                required : false,
+            },
+            linkedin:{
+                type : String,
+                required : false,
+            },
+            about:{
+                type : String,
+                required : false,
             },
             created:{
                 type : String,

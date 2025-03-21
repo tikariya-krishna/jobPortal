@@ -7,12 +7,13 @@ import jwt from "jsonwebtoken";
 import {User} from '../models/user.js';
 import { Contact } from "../models/contect.js";
 import auth from "../middelware/auth.js";
+
 dotenv.config();
 
 const router = express.Router();
 
 router.get('/me', auth, async (req,res)=>{
-    console.log(req.user);
+    
     res.send(req.user);
 })
 
@@ -122,31 +123,25 @@ router.get('/:id', auth, async (req,res)=>{
 });
 
 // Route for update a user
-router.put('update/:id', async (req,res)=>{
-    // try{
-    //     if(!req.body.userId || !req.body.userfirstName || !req.body.userLastName || !req.body.password || !req.body.email || !req.body.role || !req.body.created){
-    //         return res.status(400).send({message: 'send all required fields',});
-    //     }
-       
-
-    //     const {id} = req.params;
-    //     const result = await User.findByIdAndUpdate(id,req.body);
-
-    //     if(!result){
-    //         return res.status(404).json({message: 'User not found'});
-    //     }
+router.put('/update/:id', async (req,res)=>{
+    try{
+        if(!req.body.fname || !req.body.lname || !req.body.email || !req.body.phone || !req.body.address || !req.body.gender || !req.body.language || !req.body.dob || !req.body.linkedin || !req.body.about || !req.body.created){
+            return res.status(400).send({message: 'send all required fields',});
+        }
     
-    //     return res.status(200).send({message:'User Update Successfully'});    
-    // }catch(error){
-    //     console.log(error.message);
-    //     return res.status(500).send({message: error.message});
-    // }
-    try {
-        const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        res.json(updatedUser);
-    } catch (error) {
-        res.status(500).json({ error: "Server error" });
+        const {id} = req.params;
+        const result = await User.findByIdAndUpdate(id,req.body);
+
+        if(!result){
+            return res.status(404).json({message: 'User not found'});
+        }
+    
+        return res.status(200).send({message:'User Update Successfully'});    
+    }catch(error){
+        console.log(error.message);
+        return res.status(500).send({message: error.message});
     }
+    
 });
 
 router.post('/contact', async (req,res)=>{
