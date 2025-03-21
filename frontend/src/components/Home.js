@@ -22,7 +22,7 @@ export default Home = () =>{
     useEffect(()=>{
       axios.get('http://localhost:3001/jobs')
           .then((response) => {
-              console.log("API Response:", response.data);
+              console.log("API Response");
               setJobs(response.data); 
           })
           .catch((error) => {

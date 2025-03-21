@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {Outlet,Link} from 'react-router'
 
 const user = localStorage.getItem("user");
-const userName = JSON.parse(user)?.name;
+const userName = JSON.parse(user)?.fname;
 const userRole = JSON.parse(user)?.role;
 
 const Dropdown = () => {

@@ -1,38 +1,33 @@
-import React, { useEffect, useState } from "react";
+  import React, { useEffect, useState } from "react";
 import { useFormik, validateYupSchema } from "formik";
 import { useState } from "react";
 import * as Yup from 'yup';
 import useProfileDetails from "../profile/useProfileDetails";
 
 
-// async function formSubmit(values, setStatus) {
-//   try {
-//       if(values._id) {
-//           URL = "http://localhost:3001/user/me" + values._id;
-//           method = "GET";
-//       }
-//       const res = await fetch(URL, {
-//           method: method,
-//           headers: {
-//               "Content-Type": "application/json",
-//               "Authorization": "Bearer " + localStorage.getItem("token"),
-//           },
-//           body: JSON.stringify(values, null, 2),
-//       });
+async function formSubmit(values, setStatus) {
+  try {
+      const res = await fetch("http://localhost:3001/user/update/" + values._id, {
+          method: "PUT",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values, null, 2),
+      });
 
-//       if (!res.ok) {
-//           const result = await res.json();
-//           setStatus({ msg: "Error: " + result.message, sent: false });
-//           return;
-//       }      
+      if (!res.ok) {
+          const result = await res.json();
+          setStatus({ msg: "Error: " + result.message, sent: false });
+          return;
+      }      
 
-//       const result = await res.json();
-//       setStatus({ msg: result.message, sent: true });
-//   } catch (error) {
-//       setStatus({ msg: "Error: " + error.message, sent: false });
-//       console.error("Error", error);
-//   }
-// }
+      const result = await res.json();
+      setStatus({ msg: result.message, sent: true });
+  } catch (error) {
+      setStatus({ msg: "Error: " + error.message, sent: false });
+      console.error("Error", error);
+  }
+}
 
 
 
@@ -50,10 +45,11 @@ const EditProfile = () => {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
+      _id: profileDetails?._id || "",
       fname: profileDetails?.fname || "",
       lname: profileDetails?.lname || "",
       email: profileDetails?.email || "",
-      password: profileDetails?.abcpassword || "",
+      // password: profileDetails?.abcpassword || "",
       phone: profileDetails?.phone || "",
       address: profileDetails?.address || "",
       gender: profileDetails?.gender || "",
@@ -61,11 +57,12 @@ const EditProfile = () => {
       dob: profileDetails?.dob || "",
       linkedin: profileDetails?.linkedin || "",
       about: profileDetails?.about || "",
+      created: "today",
       },validationSchema: Yup.object({
       fname: Yup.string().required('This is a required field'),
       lname: Yup.string().required('This is a required field'),
       email: Yup.string().email('Invalid email address').required('This is a required field'),
-      password: Yup.string().min(8, 'Password must be at least 8 characters').required('This is a required field'),
+      // password: Yup.string().min(8, 'Password must be at least 8 characters').required('This is a required field'),
       phone: Yup.string().matches(/^\d{10}$/, 'Phone number must be 10 digits').required('This is a required field'),
       address: Yup.string().required('This is a required field'),
       gender: Yup.string().required('This is a required field'),
@@ -74,16 +71,13 @@ const EditProfile = () => {
       linkedin: Yup.string().url('Invalid URL').required('This is a required field'),
       about: Yup.string().required('This is a required field'),
     }),
-    onSubmit: async (values, { resetForm }) => {
-      const success = await formSubmit(JSON.stringify(values, null, 2), setStatus);
-      if (success) {
-        resetForm();
-      }
+    onSubmit: (values) => {
+      formSubmit(values, setStatus); // Pass values directly without JSON.stringify
     },
   });
   return (
     <div className="text-slate-600">
-      <form onSubmit={formik.handleSubmit} className="p-3">
+      <form onSubmit={formik.handleSubmit} className="p-3" method="put">
         <div className="flex">
           <div className="w-full p-3">
             <div>
@@ -175,7 +169,7 @@ const EditProfile = () => {
               {formik.touched.lname && formik.errors.lname && <p className="text-red-500">{formik.errors.lname}</p>}
             </div>
 
-            <div className="pt-3">
+            {/* <div className="pt-3">
               <label htmlFor="password">Password</label>
               <input
                 type="password"
@@ -185,7 +179,7 @@ const EditProfile = () => {
                 {...formik.getFieldProps("password")}
               />
               {formik.touched.password && formik.errors.password && <p className="text-red-500">{formik.errors.password}</p>}
-            </div>
+            </div> */}
 
             <div className="pt-3">
               <label htmlFor="address">Address</label>
@@ -225,8 +219,18 @@ const EditProfile = () => {
             {...formik.getFieldProps("about")}
           ></textarea>
         </div>
+        {status && status.msg && (
+            <>
+            <div className="px-3">
+              <div className={` ${ status.sent ? "bg-green-100" : "bg-red-100"} border-l-4 border-green-500 text-green-700 p-4 rounded-lg shadow-lg`}>
+              <p className="font-medium">{ status.sent ? "Success!" : "Error!"}</p>
+              <p>{status.msg}</p>
+              </div>
+            </div>
+            </>
+        )}
 
-        <div className="px-3">
+        <div className="px-3 py-5">
           <button type="submit" className="rounded-md bg-green-600 text-white py-3 font-semibold w-full">
             UPDATE
           </button>
