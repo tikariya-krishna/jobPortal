@@ -5,7 +5,6 @@ dotenv.config();
 import {mongoose} from "mongoose";
 import { User } from "./models/user.js";
 import userRoute from './routes/userRoute.js'
-import { Company } from "./models/company.js";
 import companyRoute from './routes/companyRoute.js'
 import cors from "cors"
 import addJobRoute from './routes/addJobRoute.js'

@@ -23,7 +23,8 @@ router.post('/add' , async (req,res)=>{
             !req.body.address || 
             !req.body.city || 
             !req.body.state || 
-            !req.body.country || 
+            !req.body.country ||
+            !req.body.user_id || 
             !req.body.zip_code
         ){return res.status(400).send({message: 'send all required fields,'});}
 
@@ -44,6 +45,7 @@ router.post('/add' , async (req,res)=>{
             state : req.body.state,
             country : req.body.country,
             zip_code : req.body.zip_code,
+            user_id : req.body.user_id,
             createdAt: new Date()
         };
         const jobs = await AddJob.create(newJob);
@@ -74,9 +76,13 @@ router.post('/add' , async (req,res)=>{
      }
  });
 
-router.get('/managejobs', async (req,res)=>{
+router.get('/managejobs/:userId', async (req,res)=>{
     try{
-        const addJob = await AddJob.find({});
+        const { userId } = req.params;
+        console.log(userId);
+        const addJob = await AddJob.find({"user_id": userId});
+
+        //"user_id": userId
 
         return res.status(200).json(addJob);
     }catch(error){

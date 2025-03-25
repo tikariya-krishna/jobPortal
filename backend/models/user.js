@@ -20,6 +20,7 @@ dotenv.config();
             email:{
                 type : String,
                 required : true,
+                unique:true 
             },
             role:{
                 type : String,
@@ -81,7 +82,7 @@ userSchema.methods.toJson = function () {
 
 userSchema.methods.generateAuthToken = async function () {
     const user = this;
-    const token = jwt.sign({_id: user._id.toString()}, process.env.JWT_SECRET_KEY, {expiresIn : '8h'} );
+    const token = jwt.sign({_id: user._id.toString()}, process.env.JWT_SECRET_KEY, {expiresIn : '24h'} );
 
     user.tokens = user.tokens.concat({token});
 

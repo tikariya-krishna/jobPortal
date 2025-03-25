@@ -73,6 +73,10 @@ const addjobSchema = new mongoose.Schema(
            type: String,
            required:  true
         },
+        user_id:{
+            type: String,
+            required:  true
+        },
         createdAt: { 
             type: Date, 
             default: Date.now // ✅ Automatically stores current date
