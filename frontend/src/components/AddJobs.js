@@ -5,8 +5,13 @@ import { useState } from "react";
 import * as yup from 'yup';
 import { useParams } from "react-router";
 import useJobDetails from "./jobs/useJobDetails";
+
 async function formSubmit(values, setStatus) {
     try {
+        const jsonObject = localStorage.getItem("user");
+        const user = JSON.parse(jsonObject);
+        values.user_id = user._id;
+        console.log(values);
         var URL = "http://localhost:3001/jobs/add"
         var methodCall = "POST";
         if(values._id) {
@@ -18,7 +23,7 @@ async function formSubmit(values, setStatus) {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: values, // Send FormData instead of JSON
+            body: JSON.stringify(values, null, 2), // Send FormData instead of JSON
         });
 
         if (!res.ok) {

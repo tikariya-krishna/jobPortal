@@ -7,8 +7,14 @@ import axios from 'axios';
 
 const ManageJobs = () => {
     const [jobs, setJobs] = useState([]);
+    
+    const user = JSON.parse(localStorage.getItem('user'));
+    const userId = user._id;
+    
+    
+
     useEffect(()=>{
-        axios.get('http://localhost:3001/jobs/managejobs')
+        axios.get('http://localhost:3001/jobs/managejobs/' + userId,)
             .then((response) => {
                 console.log("API Response:", response.data);
                 setJobs(response.data); 
@@ -17,6 +23,8 @@ const ManageJobs = () => {
                 console.log("Error fetching jobs:", error);
             });
     },[]);
+
+    
 
     const { id } = useParams();
     const handleDelete = (id) =>{
