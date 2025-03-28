@@ -2,6 +2,7 @@ import React from "react";
 import React, { useState, useEffect } from "react";
 import list from "../lists/jobPost.js";
 import axios from 'axios';
+import { Link } from "react-router";
 
 export default Home = () =>{
     const [jobs , setJobs ] = useState([]);
@@ -91,7 +92,7 @@ export default Home = () =>{
                   </div>
 
                   <div className="flex items-center justify-center  my-4">
-                    <button className="border-2 border-green-800 px-4 py-2 rounded-lg text-green-800 hover:text-white hover:bg-green-800 hover:delay-150 hover:duration-500">APPLY NOW</button>
+                    <Link to={`/jobs/jobpostdeatil/${ele._id}`} className="border-2 border-green-800 px-4 py-2 rounded-lg text-green-800 hover:text-white hover:bg-green-800 hover:delay-150 hover:duration-500">APPLY NOW</Link>
                   </div>
                 </li>
               </ul>
