@@ -149,4 +149,19 @@ router.put('/updatejob/:id', async (req,res)=>{
 });
 
 
+
+
+
+router.get('/jobpostdeatil/:id', async (req,res)=>{
+    try{
+        const { id } = req.params;
+        const showJob = await AddJob.findOne({"_id": id});
+        return res.status(200).json(showJob);
+    }catch(error){
+        console.log(error.message);
+        return res.status(500).send({message: error.message});
+    }
+});
+
+
 export default router;
