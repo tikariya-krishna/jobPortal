@@ -75,12 +75,11 @@ const JobPost = () => {
 
                         <div className='mobile:text-center'>
                           <div className='mt-5 mobile:flex mobile:justify-around md:block'>
-                            <button className='border-2 mobile:mb-0 border-green-800 font-semibold bg-green-800 w-40 py-2 md:mb-4 shadow-md rounded-lg text-white hover:text-green-800 hover:bg-white hover:delay-150 hover:duration-500'>APPLY NOW</button><br/>
-                            <Link to='/jobpostdeatil' className=' block text-center px-6 py-2 bg-slate-300 font-semibold rounded-lg text-black shadow-md'>VIEW JOBS</Link>
+                            <Link to={`/jobs/jobpostdeatil/${ele._id}`} className=' text-center block border-2 mobile:mb-0 border-green-800 font-semibold bg-green-800 w-40 py-2 md:mb-4 shadow-md rounded-lg text-white hover:text-green-800 hover:bg-white hover:delay-150 hover:duration-500'>APPLY NOW</Link><br/>
+                            <Link to={`/jobs/jobpostdeatil/${ele._id}`} className=' block text-center px-6 py-2 bg-slate-300 font-semibold rounded-lg text-black shadow-md'>VIEW Details</Link>
                           </div>
                         </div>
                       </div>
-
                   </li>
                 </ul>
               </div>

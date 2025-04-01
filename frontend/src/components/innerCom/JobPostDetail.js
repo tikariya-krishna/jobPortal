@@ -2,10 +2,12 @@ import React from 'react';
 import logo from '../../lists/jobImg/company_logo_1.png';
 import TitleContaint from './TitleContaint';
 import Sidebar from './SideBar';
-import list from '../../lists/JobPostList';
+import JobApplication from '../../components/popup_ui/JobApplication';
 import { useParams } from 'react-router';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router';
+
 
 const JobPostDetail = () => {
   const [jobs, setJobs] = useState([]);
@@ -24,8 +26,11 @@ const JobPostDetail = () => {
 },[]);
 
 
+
   return (
     <>
+
+    
       <TitleContaint name={"Job Detail"} path={"Job Detail"}  />
 
       {jobs && (
@@ -36,7 +41,10 @@ const JobPostDetail = () => {
                     <div className='flex justify-center'><img src={logo} alt='LOGO' width={"80px"} height={"80px"} className='rounded-full'/></div>
                     <div className='p-3'><span className='font-bold text-green-600 bg-gray-200 py-1 px-2 rounded-md'>{jobs.job_title}</span></div>
                     <p className='text-gray-600'>{jobs.address}</p>
-                    <button className='bg-green-600 text-white p-2 mt-3 px-6 rounded-md hover:text-green-800 hover:bg-white hover:delay-150 hover:duration-500 border-2 border-green-600'>Apply Now</button>
+                    {/* <button onClick={() => setShowModal(true)} className='bg-green-600 text-white p-2 mt-3 px-6 rounded-md hover:text-green-800 hover:bg-white hover:delay-150 hover:duration-500 border-2 border-green-600'>Apply Now</button> */}
+                    {/* {showModal && <JobApplication onClose={()=> setShowModal(false)} />} */}
+                    <div className='mt-4'><Link to={`/jobs/jobpostdeatil/application`} className='bg-green-600 text-white p-2 px-6 rounded-md hover:text-green-800 hover:bg-white hover:delay-150 hover:duration-500 border-2 border-green-600'>Apply Now</Link></div>
+                    
                 </div>
 
 

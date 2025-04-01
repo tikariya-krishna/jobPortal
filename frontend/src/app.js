@@ -16,6 +16,7 @@ import JobPostDetail from "./components/innerCom/JobPostDetail.js";
 import Contact from "./components/Contact.js";
 import ManageJobs from "./components/innerCom/ManageJobs.js";
 import UpdateJobs from "./components/innerCom/UpdateJob.js";
+import JobApplication from "./components/popup_ui/JobApplication.js";
 
  // react component
  const AppLayout = () =>{
@@ -35,6 +36,7 @@ import UpdateJobs from "./components/innerCom/UpdateJob.js";
                                 <Route path='/addjobs/:jobId' element={<Addjobs/>}/>
                                 <Route path='/updatejob' element={<UpdateJobs/>}/>
                                 <Route path="/jobs/jobpostdeatil/:id" element={<JobPostDetail/>}/>
+                                <Route path="/jobs/jobpostdeatil/application" element={<JobApplication/>}/>
                                 <Route path='/logout' element={<LogOut/>}/> 
                                 <Route path='/registration' element={<Registration/>}/>
                                 <Route path='/contact' element={<Contact/>}/>
