@@ -2,6 +2,7 @@ import express from "express";
 import { Company } from "../models/company.js";
 import auth from "../middelware/auth.js";
 import {User} from '../models/user.js';
+import multer from "multer";
 
 const router = express.Router();
 
@@ -69,6 +70,18 @@ router.post('/addCompany', async (req,res)=>{
     }
 });
 
+
+const upload = multer({
+    limits: {
+        fileSize: 1000000
+    },
+    fileFilter(req, file, cb) {
+        if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+            return cb(new Error('File must be an image'));
+        }
+        cb(undefined, true); //cb = a callback fn
+    }
+});
 
 // Route for update a user
 router.put('/updateCompany/:id', async (req,res)=>{

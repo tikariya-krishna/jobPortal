@@ -1,4 +1,4 @@
-import express from "express";
+import express, { application } from "express";
 //const mongodbURL  =  "mongodb+srv://dbuser:job-portal@cluster.i7mw1.mongodb.net/job_portal?retryWrites=true&w=majority&appName=Cluster";
 import dotenv from "dotenv";
 dotenv.config();
@@ -8,6 +8,7 @@ import userRoute from './routes/userRoute.js'
 import companyRoute from './routes/companyRoute.js'
 import cors from "cors"
 import addJobRoute from './routes/addJobRoute.js'
+
 
 const app = express();
 

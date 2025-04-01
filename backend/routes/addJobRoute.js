@@ -2,6 +2,7 @@ import express from "express";
 import multer from "multer";
 import path from "path";
 import { AddJob } from "../models/addJob.js";
+import { JobApplication } from "../models/jobApplication.js";
 
 const router = express.Router();
 
@@ -149,6 +150,34 @@ router.put('/updatejob/:id', async (req,res)=>{
 });
 
 
+
+
+
+router.post('/application' , async (req,res)=>{
+    try{
+
+        console.log(req.body);
+        if( !req.body.user_id || 
+            !req.body.jobId || 
+            !req.body.education || 
+            !req.body.specialization_course || 
+            !req.body.headline 
+        ){return res.status(400).send({message: 'send all required fields,'});}
+
+        const newJob = {
+            user_id : req.body.user_id,
+            jobId : req.body.jobId,
+            education : req.body.education,
+            specialization_course : req.body.specialization_course,
+            headline : req.body.headline,
+        };
+        const application = await JobApplication.create(newJob);
+        return res.status(201).send(application);
+    }catch(error){
+        console.log(error);
+        res.status(500).send({message: error.message});
+    }
+});
 
 
 
