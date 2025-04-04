@@ -17,6 +17,9 @@ import Contact from "./components/Contact.js";
 import ManageJobs from "./components/innerCom/ManageJobs.js";
 import UpdateJobs from "./components/innerCom/UpdateJob.js";
 import JobApplication from "./components/popup_ui/JobApplication.js";
+import FAQ from "./components/other_pages/faq.js";
+import TermsOfUse from "./components/other_pages/TermsOfUse.js";
+import PrivacyPolicy from "./components/other_pages/PrivacyPolicy.js";
 
  // react component
  const AppLayout = () =>{
@@ -39,6 +42,9 @@ import JobApplication from "./components/popup_ui/JobApplication.js";
                                 <Route path="/jobs/jobpostdeatil/application" element={<JobApplication/>}/>
                                 <Route path='/logout' element={<LogOut/>}/> 
                                 <Route path='/registration' element={<Registration/>}/>
+                                <Route path='/term' element={<TermsOfUse/>}/>
+                                <Route path='/faq' element={<FAQ/>}/>
+                                <Route path='/privacy' element={<PrivacyPolicy/>}/>
                                 <Route path='/contact' element={<Contact/>}/>
                               </Routes>
                             <Footer/>

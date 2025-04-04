@@ -11,7 +11,7 @@ async function formSubmit(values, setStatus) {
         const jsonObject = localStorage.getItem("user");
         const user = JSON.parse(jsonObject);
         values.user_id = user._id;
-        console.log(values);
+        // console.log(values);
         var URL = "http://localhost:3001/jobs/add"
         var methodCall = "POST";
         if(values._id) {
@@ -64,6 +64,8 @@ const Addjobs = () => {
             vacancy: jobDetails?.vacancy || "",
             experiance: jobDetails?.experiance || "",
             job_type: jobDetails?.job_type || "",
+            requirement: jobDetails?.requirement || "",
+            details: jobDetails?.details || "",
             email: jobDetails?.email || "",
             phone_number: jobDetails?.phone_number || "",
             address: jobDetails?.address || "",
@@ -81,6 +83,8 @@ const Addjobs = () => {
             vacancy: yup.number().required("This is a required field"),
             experiance: yup.number().required("This is a required field"),
             job_type: yup.string().required("This is a required field"),
+            requirement : yup.string().required("This is a required field"),
+            details: yup.string().required("This is required field"),
             email: yup.string().required("This is a required field"),
             phone_number: yup.string().required("This is a required field"),
             address: yup.string().required("This is a required field"),
@@ -201,6 +205,21 @@ const Addjobs = () => {
                                 <div>
                                     <label htmlFor="skill" className="mb-2 block text-sm font-medium text-gray-700">Skill (Separate with comma)</label>
                                     <input type="text" name="skill" id="skill" className="border-2 w-full p-2 rounded-md" placeholder="Skill" />
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                                <div className="w-full">
+                                    <label htmlFor="details" className="mb-2 block text-sm font-medium text-gray-700">Job Description</label>
+                                    <textarea id="details" name="details" className="border-2 w-full p-2 rounded-md" value={formik.values.details} onChange={formik.handleChange} onBlur={formik.handleBlur}></textarea>
+                                    {formik.errors.details ? <div className="text-red-700">{formik.errors.details}</div> : null}
+                                </div>
+
+                                <div className="w-full">
+                                    <label htmlFor="requirement" className="mb-2 block text-sm font-medium text-gray-700">Job Requirement</label>
+                                    <textarea id="requirement" name="requirement" className="border-2 w-full p-2 rounded-md" value={formik.values.requirement} onChange={formik.handleChange} onBlur={formik.handleBlur}></textarea>
+                                    {formik.errors.requirement ? <div className="text-red-700">{formik.errors.requirement}</div> : null}
+                                    
                                 </div>
                             </div>
                         </div>

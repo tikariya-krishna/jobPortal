@@ -10,7 +10,7 @@ const JobPost = () => {
     useEffect(()=>{
         axios.get('http://localhost:3001/jobs')
             .then((response) => {
-                console.log("API Response:", response.data);
+                // console.log("API Response:", response.data);
                 setJobs(response.data); 
             })
             .catch((error) => {

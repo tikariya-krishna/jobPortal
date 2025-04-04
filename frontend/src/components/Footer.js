@@ -1,27 +1,19 @@
 import React from "react";
 import ReactDOM, { createRoot } from 'react-dom/client';
+import { Link } from "react-router";
 
 
 
 export default Footer = () =>{
     return(
         <>
-            {/* <footer className="footer bg-gray-800 text-white py-5" id="contact">
-                <div className="text-center">
-                    <h2>Contact Us</h2>
-                    <p>Email: support@jobportal.com | Phone: +1 (555) 123-4567</p>
-                    <p>&copy; 2025 JobPortal. All rights reserved.</p>
-                </div>
-            </footer> */}
-
-
 
 <footer className="bg-gray-900 text-white py-10">
             <div className="container mx-auto px-6 lg:px-20 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
                 
                 {/* Company Info */}
                 <div>
-                    <h2 className="text-xl font-bold">JobPortal</h2>
+                    <h2 className="text-xl font-bold">Hire Hub</h2>
                     <p className="text-gray-400 mt-2">Find your dream job with us!</p>
                 </div>
 
@@ -40,9 +32,9 @@ export default Footer = () =>{
                 <div>
                     <h3 className="text-lg font-semibold mb-3">Support</h3>
                     <ul className="space-y-2">
-                        <li><a href="/faq" className="text-gray-400 hover:text-white">FAQ</a></li>
-                        <li><a href="/privacy-policy" className="text-gray-400 hover:text-white">Privacy Policy</a></li>
-                        <li><a href="/terms" className="text-gray-400 hover:text-white">Terms of Use</a></li>
+                        <li><Link to="/faq" className="text-gray-400 hover:text-white">FAQ</Link></li>
+                        <li><Link to="/privacy" className="text-gray-400 hover:text-white">Privacy Policy</Link></li>
+                        <li><Link to="/term" className="text-gray-400 hover:text-white">Terms of Use</Link></li>
                         <li><a href="/contact" className="text-gray-400 hover:text-white">Contact Us</a></li>
                     </ul>
                 </div>
@@ -66,7 +58,7 @@ export default Footer = () =>{
 
             {/* Footer Bottom */}
             <div className="border-t border-gray-700 mt-6 pt-6 flex flex-col md:flex-row justify-between items-center text-gray-400 px-6 lg:px-20">
-                <p>© {new Date().getFullYear()} JobPortal. All rights reserved.</p>
+                <p>© {new Date().getFullYear()} HireHub. All rights reserved.</p>
                 <div className="flex space-x-4">
                     <a href="#" className="hover:text-white">Facebook</a>
                     <a href="#" className="hover:text-white">Twitter</a>

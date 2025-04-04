@@ -6,21 +6,21 @@ import { Link } from "react-router";
 
 export default Home = () =>{
     const [jobs , setJobs ] = useState([]);
+    const [searchText,setSearchText] = useState("");
+    const [searchLocation,setSearchLocation] = useState("");
     // const jobToDisplay = list[job]; 
     
     const [user, setUser] = useState(null); // Store user data
 
-    useEffect(() => {
-        //  Get user data from localStorage
-        const loggedInUser = localStorage.getItem("user");
-        if (loggedInUser) {
-            setUser(JSON.parse(loggedInUser));
-        }
-    }, []);
-
     // const jobToDisplay = list[job];
 
     useEffect(()=>{
+
+      const loggedInUser = localStorage.getItem("user");
+        if (loggedInUser) {
+            setUser(JSON.parse(loggedInUser));
+        }
+
       axios.get('http://localhost:3001/jobs')
           .then((response) => {
               console.log("API Response");
@@ -38,7 +38,7 @@ export default Home = () =>{
             <div className="container m-auto w-1/2 lg:w-full lg:px-32 lg:py-32">
 
              {/* Display User Name  */}
-             {user && <h2 className="text-white">Welcome, {user.name}!</h2>}
+             {user && <h2 className="text-white">Welcome, {user.fname}!</h2>}
 
               <h1 className="sm:text-sm md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold text-white pb-4">Search Between More <br/> Then <span className="text-green-600">50,000</span> Open Jobs.</h1>
 
@@ -47,15 +47,23 @@ export default Home = () =>{
                  </div>
 
               <div className="search-bar pb-5">
-                <input type="text" placeholder="Search Keywords..."  className="p-3 rounded-l-lg"/>
-                <input type="text" placeholder="Location" className="p-3"/>
+                <input type="text" placeholder="Search Keywords..."  className="p-3 rounded-l-lg" value={searchText} onChange={(e)=>{setSearchText(e.target.value)}}/>
+                <input type="text" placeholder="Location" className="p-3" value={searchLocation} onChange={(e)=>{setSearchLocation(e.target.value)}}/>
                 <select className="p-3 border-b border-inherit">
                   <option value="">Category</option>
-                  <option value="software">Software</option>
+                  <option value="software">Software</option>  
                   <option value="finance">Finance</option>
                   <option value="healthcare">Healthcare</option>
                 </select>
-                <button className="btn-search p-3 rounded-r-lg bg-green-600 text-white px-6">Search</button>
+                 {/* <Link to={"/managejobs"}> */}
+                <button className="btn-search p-3 rounded-r-lg bg-green-600 text-white px-6" 
+                  onClick={()=>{
+                    console.log(searchText);
+                    const filteredJobs = jobs.filter((res)=>(searchText === "" || res.company_name.toLowerCase().includes(searchText.toLowerCase())) && (searchLocation === "" || res.address.toLowerCase().includes(searchLocation.toLowerCase())) );
+                    setJobs(filteredJobs); 
+                  }}
+                >Search</button>
+                {/* </Link> */}
               </div>
             </div>
           </header>
@@ -87,7 +95,7 @@ export default Home = () =>{
                   </div>
                   
                   <div className="text-center my-4">
-                    <p className="text-xl font-semibold text-zinc-700">{ele.compnayName}</p>
+                    <p className="text-xl font-semibold text-zinc-700">{ele.company_name}</p>
                     <p className="text-sm text-zinc-500">{ele.address}</p>
                   </div>
 

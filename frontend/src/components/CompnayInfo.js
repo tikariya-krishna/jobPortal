@@ -9,8 +9,8 @@ import useCompanyDetails from "./companyProfile/useCompanyDetails";
 
 async function formSubmit(values,setStatus, formik) {
   try {
-    console.log(values);
-    console.log(values.company_id);
+    // console.log(values);
+    // console.log(values.company_id);
     var url = "http://localhost:3001/company/addCompany";
     var methodCall = "POST";
 
@@ -57,7 +57,7 @@ const CompnayInfo = () => {
   const companyDetails = profileDetails?.company;
   const userDetails = profileDetails?.user;
 
-  console.log(companyDetails);
+  // console.log(companyDetails);
 
   const formik = useFormik({
     enableReinitialize: true,

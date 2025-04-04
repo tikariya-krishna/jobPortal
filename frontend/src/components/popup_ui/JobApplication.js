@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useParams } from "react-router";
 
 async function formSubmit(values, setStatus) {
     try {
-        const res = await fetch("http://localhost:3001/jobs/application", {
+        const res = await fetch("http://localhost:3001/jobs/application" , {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -28,9 +29,24 @@ async function formSubmit(values, setStatus) {
 const JobApplication = () => {
     const [status, setStatus] = useState(null);
 
+    useEffect(() => {
+        const userJSON = localStorage.getItem("user");
+        const storedJobId = localStorage.getItem("job_id");
+        
+        if(storedJobId){
+            formik.setFieldValue("job_id", storedJobId);
+        }
+        
+        if (userJSON) {
+            const user = JSON.parse(userJSON);
+            formik.setFieldValue("user_id", user._id);
+        }
+    }, []);
+
     const formik = useFormik({
         initialValues: {
             user_id: "",
+            job_id : "",
             higher_education: "",
             specialization_course: "",
             headline: "",
@@ -47,13 +63,6 @@ const JobApplication = () => {
         },
     });
 
-    useEffect(() => {
-        const userJSON = localStorage.getItem("user");
-        if (userJSON) {
-            const user = JSON.parse(userJSON);
-            formik.setFieldValue("user_id", user._id);
-        }
-    }, []);
 
     return (
         <div className="mt-28 m-auto w-2/5 px-10 py-5 bg-white rounded-md">
@@ -62,6 +71,7 @@ const JobApplication = () => {
             </div>
             <form method="post" className="text-start" onSubmit={formik.handleSubmit}>
                 <div className="mb-5">
+                    
                     <p>What is the name of your undergraduate course?</p>
                     <select
                         className="border-2 w-full p-2 rounded-md text-gray-700"
@@ -119,12 +129,21 @@ const JobApplication = () => {
                     ) : null}
                 </div>
 
-                <button type="submit" className="rounded-md bg-green-600 text-white py-3 font-semibold w-full">
+                <div className="max-w-lg mt-8">
+                        {status && status.msg && (
+                            <>
+                            <div className={` ${ status.sent ? "bg-green-100" : "bg-red-100"} border-l-4 border-green-500 text-green-700 p-4 rounded-lg shadow-lg`}>
+                            <p className="font-medium">{ status.sent ? "Success!" : "Error!"}</p>
+                            <p>{status.msg}</p>
+                            </div>
+                            </>
+                        )}      
+                </div>
+
+                <button type="submit" className="rounded-md bg-green-600 text-white mt-5 py-3 font-semibold w-full">
                     Submit
                 </button>
             </form>
-
-            {status && <p className={status.sent ? "text-green-600" : "text-red-600"}>{status.msg}</p>}
         </div>
     );
 };
