@@ -143,9 +143,11 @@ const Addjobs = () => {
                                     <label htmlFor="category" className="mb-2 block text-sm font-medium text-gray-700">Salary Range</label>
                                     <select className="border-2 w-full p-2 rounded-md text-gray-700" id="salary_range" name="salary_range" value={formik.values.salary_range} onChange={formik.handleChange} onBlur={formik.handleBlur}>
                                         <option>Salary Range</option>
-                                        <option value="1000">$1000</option>
-                                        <option value="2000">$2000</option>
-                                        <option value="3000">$3000</option>
+                                        <option value="Under 10000">Under $10000</option>
+                                        <option value="10000-15000">$10000 -$15000</option>
+                                        <option value="15000-20000">$15000 -$20000</option>
+                                        <option value="20000-25000">$20000 -$25000</option>
+                                        <option value="25000-30000">$25000 -$30000</option>
                                     </select>
                                     {formik.errors.salary_range ? <div className="text-red-700">{formik.errors.salary_range}</div> : null}
                                 </div>
@@ -190,6 +192,8 @@ const Addjobs = () => {
                                         <option value="full_time">Full Time</option>
                                         <option value="internship">Internship</option>
                                         <option value="placement">Placement</option>
+                                        <option value="fresher">Fresher</option>
+                                        <option value="contract">Contract Based</option>
                                     </select>
                                     {formik.errors.job_type ? <div className="text-red-700">{formik.errors.job_type}</div> : null}
                                 </div>
