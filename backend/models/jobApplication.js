@@ -6,12 +6,12 @@ const jobApplicationSchema = new mongoose.Schema({
         ref: "User",
         required: true,
     },
-    jobId:{
+    job_id:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "AddJob",
         required:true,
     },
-    education:{
+    higher_education:{
         type: String,
         required: true,
     },

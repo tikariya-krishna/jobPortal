@@ -77,7 +77,7 @@ router.post("/login", async (req, res) => {
         const token = await user.generateAuthToken();
 
         // Debugging: Log if user is found
-        console.log("User found:", user);
+        // console.log("User found:", user);
 
         // res.status(200).json({ message: "Login successful", user });
         res.status(200).json({ 

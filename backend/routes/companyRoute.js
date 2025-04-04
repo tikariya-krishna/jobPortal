@@ -9,20 +9,20 @@ const router = express.Router();
 
 router.get('/getDetails', auth, async (req,res)=>{
     const userId = req.user._id;
-    console.log("UserId " + userId);
+    
     const company = await Company.findOne({"user_id": userId });
     const response = {
         "user": req.user,
         "company": company
     };
     res.send(response);
-    console.log(response);
+    
 })
 
 
 // Route for save a new company
 router.post('/addCompany', async (req,res)=>{
-    console.log(req.body);
+    
     try{
         if( !req.body.user_id ||
             !req.body.cname ||

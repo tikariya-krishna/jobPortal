@@ -40,6 +40,14 @@ const addjobSchema = new mongoose.Schema(
             required: true
             
         },
+        requirement:{
+            type: String,
+            required : true
+        },
+        details:{
+            type: String,
+            required : true
+        },
         email:{
             type: String,
             required: true
