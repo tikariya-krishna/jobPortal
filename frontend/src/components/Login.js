@@ -20,7 +20,7 @@ async function formSubmit(data, setStatus) {
         const result = await res.json();
 
         if (!res.ok) {
-            setStatus({ msg: "Error: " + result.message, sent: false });
+            setStatus({ msg: result.message, sent: false });
             return false;
         }
 

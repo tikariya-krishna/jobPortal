@@ -25,7 +25,8 @@ app.get("/",(req,res)=>{
 app.use('/user', userRoute);
 app.use('/company', companyRoute);
 app.use('/jobs', addJobRoute);
-app.post('/contact', userRoute); // The contact route create in userRoute file.
+app.post('/contact', userRoute);
+ // The contact route create in userRoute file.
 
 const connectionURL = process.env.MONGODBURL;
 mongoose.connect(connectionURL).then(()=>{

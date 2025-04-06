@@ -3,6 +3,7 @@ import ProfileDetails from './ProfileDetails.js'
 import TitleContaint from "./TitleContaint.js";
 import logo from '../../lists/jobImg/company_logo_1.png';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router';
 
 const DashBoard = () => {
 
@@ -187,7 +188,7 @@ const DashBoard = () => {
                         <div className=''>
                           <div className='mt-5'>
                             <p className='border-2 border-green-800 font-bold bg-green-800 w-40 py-2 mb-4 shadow-md rounded-lg text-white text-center '>Applied</p><br/>
-                            <button className='bg-slate-300 font-semibold px-6 py-2 rounded-lg text-black w-40 shadow-md'>VIEW JOB</button>
+                            <Link to={`/jobs/jobpostdeatil/${jobApp.job_id._id}`} className=' block text-center px-6 py-2 bg-slate-300 font-semibold rounded-lg text-black shadow-md'>VIEW Details</Link>
                           </div>
                         </div>
                       </div>

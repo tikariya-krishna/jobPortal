@@ -5,6 +5,7 @@ import { MdDashboard } from 'react-icons/md';
 import { MdDashboard, MdEdit, MdBusiness, MdExitToApp } from 'react-icons/md';
 const user = localStorage.getItem("user");
 const userRole = JSON.parse(user)?.role;
+const userName = JSON.parse(user)?.fname;
 
 const ProfileDetails = () =>{
     return(
@@ -15,7 +16,7 @@ const ProfileDetails = () =>{
                     <img src={UserProfile} width={"250px"} height={"250px"} className="rounded-md object-cover"/>
                 </div>
                 <div className="bg-green-500 text-white text-center py-2">
-                        <p className="font-semibold text-lg">Alden Smith</p>
+                        <p className="font-semibold text-lg">{userName}</p>
                 </div>
             </div>
 
