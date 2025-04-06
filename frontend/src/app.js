@@ -20,6 +20,7 @@ import JobApplication from "./components/popup_ui/JobApplication.js";
 import FAQ from "./components/other_pages/faq.js";
 import TermsOfUse from "./components/other_pages/TermsOfUse.js";
 import PrivacyPolicy from "./components/other_pages/PrivacyPolicy.js";
+import ResumesUpload from "./components/resume/ResumesUpload.js";
 
  // react component
  const AppLayout = () =>{
@@ -46,6 +47,7 @@ import PrivacyPolicy from "./components/other_pages/PrivacyPolicy.js";
                                 <Route path='/faq' element={<FAQ/>}/>
                                 <Route path='/privacy' element={<PrivacyPolicy/>}/>
                                 <Route path='/contact' element={<Contact/>}/>
+                                <Route path='/resume' element={<ResumesUpload/>}/>
                               </Routes>
                             <Footer/>
                         </BrowserRouter>

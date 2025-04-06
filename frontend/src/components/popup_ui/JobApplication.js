@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useParams } from "react-router";
+import { useNavigate } from "react-router"; 
 
 async function formSubmit(values, setStatus) {
     try {
@@ -28,6 +29,7 @@ async function formSubmit(values, setStatus) {
 
 const JobApplication = () => {
     const [status, setStatus] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const userJSON = localStorage.getItem("user");
@@ -66,6 +68,9 @@ const JobApplication = () => {
 
     return (
         <div className="mt-28 m-auto w-2/5 px-10 py-5 bg-white rounded-md">
+
+            <button className="mb-4 text-blue-600 hover:underline font-semibold" onClick={() => navigate(-1)}> ← Back</button>
+
             <div className="flex justify-around mb-7">
                 <h2 className="text-3xl">Application Form</h2>
             </div>

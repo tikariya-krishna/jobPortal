@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import * as Yup from 'yup';
 import useProfileDetails from "../profile/useProfileDetails";
+import { Outlet, Link } from "react-router";
 
 
 async function formSubmit(values, setStatus) {
@@ -76,6 +77,7 @@ const EditProfile = () => {
     },
   });
   return (
+    <>
     <div className="text-slate-600">
       <form onSubmit={formik.handleSubmit} className="p-3" method="put">
         <div className="flex">
@@ -237,6 +239,8 @@ const EditProfile = () => {
         </div>
       </form>
     </div>
+</>
+        
   );
 };
 

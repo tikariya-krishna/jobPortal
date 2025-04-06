@@ -26,6 +26,7 @@ const Menu = () => {
           {(userRole == "job_seeker") &&
           <>
           <li className='p-1'><Link to="/jobs" className='max-mobile:block max-mobile:text-center max-mobile:mx-5 md:mx-0 md:inline rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>Jobs</Link></li>
+          
           <li className='p-1'><Link to="/userprofile" className='max-mobile:block max-mobile:text-center max-mobile:mx-5 md:mx-0 md:inline rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white'>UserProfile</Link></li>
           </>
           }

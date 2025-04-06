@@ -8,9 +8,18 @@ import userRoute from './routes/userRoute.js'
 import companyRoute from './routes/companyRoute.js'
 import cors from "cors"
 import addJobRoute from './routes/addJobRoute.js'
+import resumeRoute from './routes/resumeRoute.js'
+
+// index.js or server.js
 
 
 const app = express();
+
+
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+
 
 // Use CORS middleware with specified options
 app.use(cors());
@@ -26,6 +35,7 @@ app.use('/user', userRoute);
 app.use('/company', companyRoute);
 app.use('/jobs', addJobRoute);
 app.post('/contact', userRoute);
+app.use('/resume', resumeRoute);
  // The contact route create in userRoute file.
 
 const connectionURL = process.env.MONGODBURL;
